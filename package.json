@@ -1,8 +1,17 @@
 {
-  "name": "formchat",
+  "name": "form-chat",
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "files": ["dist"],
+  "main": "./dist/form-chat.umd.cjs",
+  "module": "./dist/form-chat.js",
+  "exports": {
+    ".": {
+      "import": "./dist/form-chat.js",
+      "require": "./dist/form-chat.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="chat-application tw-fixed tw-right-[50px] tw-bottom-[50px] tw-flex tw-flex-col tw-justify-center tw-items-end tw-gap-5"
+    class="chat-application"
     :class="{
       'chat-dark-theme': options?.styles?.theme === 'dark',
       'chat-light-theme': options?.styles?.theme === 'light',
@@ -35,7 +35,7 @@
 <script setup>
 import { ref, watch, computed } from "vue";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
-import ForumOutlineIcon from '../assets/svgIcons/forum-outline.svg';
+import ForumOutlineIcon from "../assets/svgIcons/forum-outline.svg";
 
 const props = defineProps({
   scripts: {
@@ -58,7 +58,9 @@ const finishedCallback = ref(null);
 const chatWindowRef = ref(null);
 const chatWindowOpen = ref(false);
 
-const showBubble = computed(() => props.options?.embedded?.type != "background");
+const showBubble = computed(
+  () => props.options?.embedded?.type != "background"
+);
 
 const onFinished = (callback) => {
   finishedCallback.value = callback;
@@ -78,11 +80,11 @@ const toggleChatWindow = () => {
 
 const showChatWindow = () => {
   chatWindowOpen.value = true;
-}
+};
 
 const hideChatWindow = () => {
   chatWindowOpen.value = false;
-}
+};
 
 const handleClickToggleChatWindow = () => {
   toggleChatWindow();
@@ -118,3 +120,9 @@ defineExpose({
   hideChatWindow,
 });
 </script>
+
+<style scoped>
+.chat-application {
+  @apply tw-fixed tw-right-[50px] tw-bottom-[50px] tw-flex tw-flex-col tw-justify-center tw-items-end tw-gap-5;
+}
+</style>
