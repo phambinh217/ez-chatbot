@@ -43,10 +43,10 @@ defineExpose({
 
 <style scoped>
 .chat-conversation-container {
-  @apply tw-flex tw-flex-col tw-gap-4 tw-max-h-[500px] tw-min-h-[500px] tw-overflow-auto tw-px-4;
+  @apply --fc-flex --fc-flex-col --fc-gap-4 --fc-max-h-[500px] --fc-min-h-[500px] --fc-overflow-auto --fc-px-4;
 }
 
 .chat-conversation-padding {
-  @apply tw-p-1;
+  @apply --fc-p-1;
 }
 </style>

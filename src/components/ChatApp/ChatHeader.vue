@@ -42,46 +42,46 @@ const $emit = defineEmits(["click-reset-button"]);
 
 <style scoped>
 .chat-header-container {
-  @apply tw-bg-[var(--chat-primary-color)] tw-px-4 tw-py-2 tw-text-white tw-flex tw-items-center tw-justify-between;
+  @apply --fc-bg-[var(--chat-primary-color)] --fc-px-4 --fc-py-2 --fc-text-white --fc-flex --fc-items-center --fc-justify-between;
 }
 
 .chat-header-user {
-  @apply tw-flex tw-items-center tw-gap-2;
+  @apply --fc-flex --fc-items-center --fc-gap-2;
 }
 
 .chat-user-name {
-  @apply tw-font-semibold;
+  @apply --fc-font-semibold;
 }
 
 .chat-user-avatar {
-  @apply tw-w-[30px] tw-h-[30px] tw-rounded-full tw-bg-gray-300;
+  @apply --fc-w-[30px] --fc-h-[30px] --fc-rounded-full --fc-bg-gray-300;
 }
 
 .chat-user-avatar img {
-  @apply tw-w-full;
+  @apply --fc-w-full;
 }
 
 .chat-header-buttons {
-  @apply tw-flex tw-items-center tw-gap-2;
+  @apply --fc-flex --fc-items-center --fc-gap-2;
 }
 
 .chat-header-buttons button {
-  @apply tw-shadow tw-h-4 tw-w-4 tw-rounded-full tw-flex tw-items-center tw-justify-center hover:tw-text-gray-800 hover:tw-fill-gray-800;
+  @apply --fc-shadow --fc-h-4 --fc-w-4 --fc-rounded-full --fc-flex --fc-items-center --fc-justify-center hover:--fc-text-gray-800 hover:--fc-fill-gray-800;
 }
 
 .chat-header-buttons button .chat-icon {
-  @apply tw-text-[10px] tw-h-[10px] tw-w-[10px];
+  @apply --fc-text-[10px] --fc-h-[10px] --fc-w-[10px];
 }
 
 .chat-toggle-button {
-  @apply tw-bg-yellow-500 tw-text-yellow-500 tw-fill-yellow-500;
+  @apply --fc-bg-yellow-500 --fc-text-yellow-500 --fc-fill-yellow-500;
 }
 
 .chat-reset-button {
-  @apply tw-bg-green-500 tw-text-green-500 tw-fill-green-500;
+  @apply --fc-bg-green-500 --fc-text-green-500 --fc-fill-green-500;
 }
 
 .chat-close-button {
-  @apply tw-bg-red-500 tw-text-red-500 tw-fill-red-500;
+  @apply --fc-bg-red-500 --fc-text-red-500 --fc-fill-red-500;
 }
 </style>

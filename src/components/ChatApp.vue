@@ -7,12 +7,12 @@
     }"
   >
     <Transition
-      enter-active-class="tw-transition tw-duration-150 tw-ease-in-out"
-      enter-from-class="tw-opacity-0 tw-translate-y-4"
-      enter-to-class="tw-opacity-100 tw-translate-y-0"
-      leave-active-class="tw-transition tw-duration-150 tw-ease-in-out"
-      leave-from-class="tw-opacity-100 tw-translate-y-0"
-      leave-to-class="tw-opacity-0 tw-translate-y-4"
+      enter-active-class="--fc-transition --fc-duration-150 --fc-ease-in-out"
+      enter-from-class="--fc-opacity-0 --fc-translate-y-4"
+      enter-to-class="--fc-opacity-100 --fc-translate-y-0"
+      leave-active-class="--fc-transition --fc-duration-150 --fc-ease-in-out"
+      leave-from-class="--fc-opacity-100 --fc-translate-y-0"
+      leave-to-class="--fc-opacity-0 --fc-translate-y-4"
     >
       <ChatWindow
         v-show="chatWindowOpen"
@@ -24,10 +24,10 @@
     </Transition>
     <div
       v-if="showBubble"
-      class="tw-shadow-lg tw-cursor-pointer tw-h-[70px] tw-w-[70px] tw-bg-[var(--chat-primary-color)] tw-rounded-full tw-flex tw-items-center tw-justify-center"
+      class="--fc-shadow-lg --fc-cursor-pointer --fc-h-[70px] --fc-w-[70px] --fc-bg-[var(--chat-primary-color)] --fc-rounded-full --fc-flex --fc-items-center --fc-justify-center"
       @click="handleClickToggleChatWindow"
     >
-      <ForumOutlineIcon class="tw-w-[40px] tw-fill-white" />
+      <ForumOutlineIcon class="--fc-w-[40px] --fc-fill-white" />
     </div>
   </div>
 </template>
@@ -123,6 +123,6 @@ defineExpose({
 
 <style scoped>
 .chat-application {
-  @apply tw-fixed tw-right-[50px] tw-bottom-[50px] tw-flex tw-flex-col tw-justify-center tw-items-end tw-gap-5;
+  @apply --fc-fixed --fc-right-[50px] --fc-bottom-[50px] --fc-flex --fc-flex-col --fc-justify-center --fc-items-end --fc-gap-5;
 }
 </style>

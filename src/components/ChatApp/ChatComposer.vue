@@ -81,19 +81,19 @@ watch(
 
 <style scoped>
 .chat-composer-container {
-  @apply tw-p-4 tw-flex tw-flex-row tw-gap-3;
+  @apply --fc-p-4 --fc-flex --fc-flex-row --fc-gap-3;
 }
 
 .chat-composer-input {
-  @apply tw-py-2 tw-rounded-[30px] tw-bg-white tw-border tw-border-gray-300 tw-border-solid tw-w-full tw-px-[20px] tw-h-[40px] tw-min-h-[40px] tw-resize-none tw-overflow-hidden;
-  @apply focus:tw-ring-0 focus:tw-outline-none focus:tw-border-[var(--chat-primary-color)];
+  @apply --fc-py-2 --fc-rounded-[30px] --fc-bg-white --fc-border --fc-border-gray-300 --fc-border-solid --fc-w-full --fc-px-[20px] --fc-h-[40px] --fc-min-h-[40px] --fc-resize-none --fc-overflow-hidden;
+  @apply focus:--fc-ring-0 focus:--fc-outline-none focus:--fc-border-[var(--chat-primary-color)];
 }
 
 .chat-composer-submit-button {
-  @apply tw-h-[40px] tw-w-[40px] tw-rounded-full tw-bg-[var(--chat-primary-color)] tw-text-white tw-flex tw-items-center tw-justify-center;
+  @apply --fc-h-[40px] --fc-w-[40px] --fc-rounded-full --fc-bg-[var(--chat-primary-color)] --fc-text-white --fc-flex --fc-items-center --fc-justify-center;
 }
 
 .chat-composer-submit-button .chat-icon {
-  @apply tw-w-5 tw-h-5 tw-fill-white;
+  @apply --fc-w-5 --fc-h-5 --fc-fill-white;
 }
 </style>

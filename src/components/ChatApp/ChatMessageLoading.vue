@@ -22,22 +22,22 @@ const widths = ref([200, 150, 250]);
 
 <style scoped>
 .chat-message-loading-item-container {
-  @apply tw-self-start tw-animate-pulse;
+  @apply --fc-self-start --fc-animate-pulse;
 }
 
 .chat-message-loading-item-inner {
-  @apply tw-flex tw-flex-row tw-gap-1;
+  @apply --fc-flex --fc-flex-row --fc-gap-1;
 }
 
 .chat-message-loading-avatar {
-  @apply tw-w-[30px] tw-h-[30px] tw-rounded-full tw-bg-gray-200 tw-overflow-hidden;
+  @apply --fc-w-[30px] --fc-h-[30px] --fc-rounded-full --fc-bg-gray-200 --fc-overflow-hidden;
 }
 
 .chat-message-loading-content {
-  @apply tw-p-3 tw-rounded-2xl tw-gap-3 tw-bg-blue-200 tw-text-gray-900;
+  @apply --fc-p-3 --fc-rounded-2xl --fc-gap-3 --fc-bg-blue-200 --fc-text-gray-900;
 }
 
 .chat-message-loading-text {
-  @apply tw-p-3;
+  @apply --fc-p-3;
 }
 </style>

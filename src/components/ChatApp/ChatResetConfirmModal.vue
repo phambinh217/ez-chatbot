@@ -39,24 +39,24 @@ const handleClickNoButton = () => {
 
 <style setup>
 .chat-default-button {
-  @apply tw-px-3 tw-py-1 tw-text-[var(--chat-primary-color)] tw-rounded-full;
-  @apply tw-border tw-border-solid tw-border-[var(--chat-primary-color)] tw-bg-white tw-shadow tw-text-xs;
+  @apply --fc-px-3 --fc-py-1 --fc-text-[var(--chat-primary-color)] --fc-rounded-full;
+  @apply --fc-border --fc-border-solid --fc-border-[var(--chat-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
 }
 
 .chat-negative-button {
-  @apply tw-px-3 tw-py-1 tw-text-[var(--chat-primary-color)] tw-rounded-full;
-  @apply tw-border tw-border-solid tw-border-[var(--chat-primary-color)] tw-bg-white tw-shadow tw-text-xs;
+  @apply --fc-px-3 --fc-py-1 --fc-text-[var(--chat-primary-color)] --fc-rounded-full;
+  @apply --fc-border --fc-border-solid --fc-border-[var(--chat-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
 }
 
 .chat-modal-container {
-  @apply tw-bg-white tw-rounded tw-w-[90%] tw-shadow;
+  @apply --fc-bg-white --fc-rounded --fc-w-[90%] --fc-shadow;
 }
 
 .chat-modal-title {
-  @apply tw-p-4 tw-text-center tw-text-lg tw-font-bold;
+  @apply --fc-p-4 --fc-text-center --fc-text-lg --fc-font-bold;
 }
 
 .chat-modal-actions {
-  @apply tw-p-4 tw-flex tw-items-center tw-justify-center tw-gap-2;
+  @apply --fc-p-4 --fc-flex --fc-items-center --fc-justify-center --fc-gap-2;
 }
 </style>

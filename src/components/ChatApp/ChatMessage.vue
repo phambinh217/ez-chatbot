@@ -55,47 +55,47 @@ const handleSelectOptionInMessage = (option, index) => {
 
 <style scoped>
 .chat-message-host-user {
-  @apply tw-self-start;
+  @apply --fc-self-start;
 }
 
 .chat-message-agent-user {
-  @apply tw-self-end;
+  @apply --fc-self-end;
 }
 
 .chat-message-container {
-  @apply tw-flex tw-flex-row tw-gap-1;
+  @apply --fc-flex --fc-flex-row --fc-gap-1;
 }
 
 .chat-message-user .chat-message-avatar {
-  @apply tw-w-[30px] tw-h-[30px] tw-rounded-full tw-bg-gray-200 tw-overflow-hidden;
+  @apply --fc-w-[30px] --fc-h-[30px] --fc-rounded-full --fc-bg-gray-200 --fc-overflow-hidden;
 }
 
 .chat-message-user .chat-message-avatar img {
-  @apply tw-w-full;
+  @apply --fc-w-full;
 }
 
 .chat-message-content-container {
-  @apply tw-p-3 tw-rounded-2xl tw-gap-3 tw-inline-block;
+  @apply --fc-p-3 --fc-rounded-2xl --fc-gap-3 --fc-inline-block;
 }
 
 .chat-message-content-inner {
-  @apply tw-flex tw-flex-col tw-gap-2;
+  @apply --fc-flex --fc-flex-col --fc-gap-2;
 }
 
 .chat-message-option-list {
-  @apply tw-flex tw-flex-row tw-flex-wrap tw-gap-1;
+  @apply --fc-flex --fc-flex-row --fc-flex-wrap --fc-gap-1;
 }
 
 .chat-message-option-item {
-  @apply tw-py-1 tw-px-3 tw-rounded-full tw-bg-white tw-text-gray-600 tw-text-sm tw-cursor-pointer hover:tw-bg-gray-200 tw-transition-all tw-duration-300;
+  @apply --fc-py-1 --fc-px-3 --fc-rounded-full --fc-bg-white --fc-text-gray-600 --fc-text-sm --fc-cursor-pointer hover:--fc-bg-gray-200 --fc-transition-all --fc-duration-300;
 }
 
 .chat-message-agent-user .chat-message-content-container {
-  @apply tw-bg-gray-200;
+  @apply --fc-bg-gray-200;
 }
 
 .chat-message-host-user .chat-message-content-container {
-  @apply tw-bg-[var(--chat-primary-light-color)];
+  @apply --fc-bg-[var(--chat-primary-light-color)];
 }
 
 .chat-message-text {

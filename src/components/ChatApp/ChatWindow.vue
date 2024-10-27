@@ -307,19 +307,19 @@ defineExpose({
 
 <style scoped>
 .chat-window {
-  @apply tw-bg-white tw-w-[400px] tw-rounded-xl tw-flex tw-flex-col tw-text-sm tw-overflow-hidden tw-relative tw-shadow-2xl;
+  @apply --fc-bg-white --fc-w-[400px] --fc-rounded-xl --fc-flex --fc-flex-col --fc-text-sm --fc-overflow-hidden --fc-relative --fc-shadow-2xl;
 }
 
 .skip-container {
-  @apply tw-bottom-1 tw-sticky tw-w-full tw-flex tw-items-center tw-justify-center;
+  @apply --fc-bottom-1 --fc-sticky --fc-w-full --fc-flex --fc-items-center --fc-justify-center;
 }
 
 .skip-container button {
-  @apply tw-border-blue-200 tw-px-3 tw-py-1 tw-text-[var(--chat-primary-color)] tw-rounded-full;
-  @apply tw-border tw-border-solid tw-border-[var(--chat-primary-color)] tw-bg-white tw-shadow tw-text-xs;
+  @apply --fc-border-blue-200 --fc-px-3 --fc-py-1 --fc-text-[var(--chat-primary-color)] --fc-rounded-full;
+  @apply --fc-border --fc-border-solid --fc-border-[var(--chat-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
 }
 
 .chat-body {
-  @apply tw-relative;
+  @apply --fc-relative;
 }
 </style>

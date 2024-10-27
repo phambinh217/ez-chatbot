@@ -15,6 +15,6 @@ defineProps({
 
 <style scoped>
 .chat-modal-backdrop {
-  @apply tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-gray-500/90 tw-flex tw-flex-col tw-items-center tw-justify-center;
+  @apply --fc-absolute --fc-top-0 --fc-left-0 --fc-w-full --fc-h-full --fc-bg-gray-500/90 --fc-flex --fc-flex-col --fc-items-center --fc-justify-center;
 }
 </style>
