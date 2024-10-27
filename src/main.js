@@ -1,6 +1,10 @@
-import './assets/main.css'
+import "./assets/chat.css";
 
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
 
-createApp(App).mount('#app')
+import ChatApp from "./components/ChatApp.vue";
+
+window.createFormChat = (el, props) => {
+  const app = createApp(ChatApp, props);
+  return app.mount(el)
+};

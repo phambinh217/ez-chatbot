@@ -1,0 +1,72 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply tw-bg-gray-50;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply tw-rounded tw-bg-gray-400;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply tw-bg-gray-200;
+}
+
+/**
+ * ------------------------------
+ * Chat
+ * ------------------------------
+ */
+:root {
+    --chat-primary-color: #3b82f6;
+    --chat-primary-light-color: #60a5fa;
+    --chat-secondary-color: #4f46e5;
+    --chat-secondary-light-color: #6366f1;
+}
+
+.chat-application {
+    @apply tw-text-base tw-font-sans;
+}
+
+.chat-application input,
+.chat-application button,
+.chat-application textarea {
+    all: unset;
+    padding-block: 0 !important;
+}
+
+.chat-application button {
+    @apply tw-cursor-pointer;
+}
+
+.chat-application.chat-dark-theme .chat-window {
+    @apply !tw-bg-gray-700;
+}
+
+.chat-application.chat-dark-theme .chat-header-container {
+    @apply tw-text-gray-700;
+}
+
+.chat-application.chat-dark-theme .chat-message-option-item {
+    @apply tw-bg-gray-700 tw-text-white;
+    @apply hover:tw-bg-gray-900;
+}
+
+.chat-application.chat-dark-theme .chat-composer-input {
+    @apply tw-bg-gray-700 tw-text-white tw-border-gray-600;
+}
+
+.chat-application.chat-dark-theme .chat-composer-submit-button {
+    @apply tw-text-gray-700;
+}
