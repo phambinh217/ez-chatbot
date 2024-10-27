@@ -1,9 +1,9 @@
 <template>
   <div
-    class="chat-application"
+    class="--fc-application"
     :class="{
-      'chat-dark-theme': options?.styles?.theme === 'dark',
-      'chat-light-theme': options?.styles?.theme === 'light',
+      '--fc-dark-theme': options?.styles?.theme === 'dark',
+      '--fc-light-theme': options?.styles?.theme === 'light',
     }"
   >
     <Transition
@@ -24,7 +24,7 @@
     </Transition>
     <div
       v-if="showBubble"
-      class="--fc-shadow-lg --fc-cursor-pointer --fc-h-[70px] --fc-w-[70px] --fc-bg-[var(--chat-primary-color)] --fc-rounded-full --fc-flex --fc-items-center --fc-justify-center"
+      class="--fc-shadow-lg --fc-cursor-pointer --fc-h-[70px] --fc-w-[70px] --fc-bg-[var(--fc-primary-color)] --fc-rounded-full --fc-flex --fc-items-center --fc-justify-center"
       @click="handleClickToggleChatWindow"
     >
       <ForumOutlineIcon class="--fc-w-[40px] --fc-fill-white" />
@@ -97,11 +97,11 @@ const initStyle = () => {
   const primaryLightColor = props.options?.styles?.primaryLightColor;
 
   if (primaryColor) {
-    rootEl?.style.setProperty("--chat-primary-color", primaryColor);
+    rootEl?.style.setProperty("--fc-primary-color", primaryColor);
   }
 
   if (primaryLightColor) {
-    rootEl?.style.setProperty("--chat-primary-light-color", primaryLightColor);
+    rootEl?.style.setProperty("--fc-primary-light-color", primaryLightColor);
   }
 };
 
@@ -122,7 +122,7 @@ defineExpose({
 </script>
 
 <style scoped>
-.chat-application {
+.--fc-application {
   @apply --fc-fixed --fc-right-[50px] --fc-bottom-[50px] --fc-flex --fc-flex-col --fc-justify-center --fc-items-end --fc-gap-5;
 }
 </style>

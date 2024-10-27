@@ -28,44 +28,44 @@
  * ------------------------------
  */
 :root {
-    --chat-primary-color: #3b82f6;
-    --chat-primary-light-color: #60a5fa;
-    --chat-secondary-color: #4f46e5;
-    --chat-secondary-light-color: #6366f1;
+    --fc-primary-color: #3b82f6;
+    --fc-primary-light-color: #60a5fa;
+    --fc-secondary-color: #4f46e5;
+    --fc-secondary-light-color: #6366f1;
 }
 
-.chat-application {
+.--fc-application {
     @apply --fc-text-base --fc-font-sans;
 }
 
-.chat-application input,
-.chat-application button,
-.chat-application textarea {
+.--fc-application input,
+.--fc-application button,
+.--fc-application textarea {
     all: unset;
     padding-block: 0 !important;
 }
 
-.chat-application button {
+.--fc-application button {
     @apply --fc-cursor-pointer;
 }
 
-.chat-application.chat-dark-theme .chat-window {
+.--fc-application.--fc-dark-theme .--fc-window {
     @apply !--fc-bg-gray-700;
 }
 
-.chat-application.chat-dark-theme .chat-header-container {
+.--fc-application.--fc-dark-theme .--fc-header-container {
     @apply --fc-text-gray-700;
 }
 
-.chat-application.chat-dark-theme .chat-message-option-item {
+.--fc-application.--fc-dark-theme .--fc-message-option-item {
     @apply --fc-bg-gray-700 --fc-text-white;
     @apply hover:--fc-bg-gray-900;
 }
 
-.chat-application.chat-dark-theme .chat-composer-input {
+.--fc-application.--fc-dark-theme .--fc-composer-input {
     @apply --fc-bg-gray-700 --fc-text-white --fc-border-gray-600;
 }
 
-.chat-application.chat-dark-theme .chat-composer-submit-button {
+.--fc-application.--fc-dark-theme .--fc-composer-submit-button {
     @apply --fc-text-gray-700;
 }

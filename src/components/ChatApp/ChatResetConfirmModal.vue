@@ -1,14 +1,14 @@
 <template>
   <TheModal :open="open">
-    <div class="chat-modal-container">
-      <div class="chat-modal-title">
+    <div class="--fc-modal-container">
+      <div class="--fc-modal-title">
         Are you sure to restart the chat?
       </div>
-      <div class="chat-modal-actions">
-        <button class="chat-negative-button" @click="handleClickYesButton">
+      <div class="--fc-modal-actions">
+        <button class="--fc-negative-button" @click="handleClickYesButton">
           Yes
         </button>
-        <button class="chat-default-button" @click="handleClickNoButton">
+        <button class="--fc-default-button" @click="handleClickNoButton">
           No
         </button>
       </div>
@@ -38,25 +38,25 @@ const handleClickNoButton = () => {
 </script>
 
 <style setup>
-.chat-default-button {
-  @apply --fc-px-3 --fc-py-1 --fc-text-[var(--chat-primary-color)] --fc-rounded-full;
-  @apply --fc-border --fc-border-solid --fc-border-[var(--chat-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
+.--fc-default-button {
+  @apply --fc-px-3 --fc-py-1 --fc-text-[var(--fc-primary-color)] --fc-rounded-full;
+  @apply --fc-border --fc-border-solid --fc-border-[var(--fc-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
 }
 
-.chat-negative-button {
-  @apply --fc-px-3 --fc-py-1 --fc-text-[var(--chat-primary-color)] --fc-rounded-full;
-  @apply --fc-border --fc-border-solid --fc-border-[var(--chat-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
+.--fc-negative-button {
+  @apply --fc-px-3 --fc-py-1 --fc-text-[var(--fc-primary-color)] --fc-rounded-full;
+  @apply --fc-border --fc-border-solid --fc-border-[var(--fc-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
 }
 
-.chat-modal-container {
+.--fc-modal-container {
   @apply --fc-bg-white --fc-rounded --fc-w-[90%] --fc-shadow;
 }
 
-.chat-modal-title {
+.--fc-modal-title {
   @apply --fc-p-4 --fc-text-center --fc-text-lg --fc-font-bold;
 }
 
-.chat-modal-actions {
+.--fc-modal-actions {
   @apply --fc-p-4 --fc-flex --fc-items-center --fc-justify-center --fc-gap-2;
 }
 </style>

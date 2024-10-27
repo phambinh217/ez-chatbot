@@ -1,10 +1,10 @@
 <template>
   <div
-    class="chat-conversation-container"
+    class="--fc-conversation-container"
     ref="conversationMessagesRef"
     @scroll="handleScrollConversation"
   >
-    <div class="chat-conversation-padding" />
+    <div class="--fc-conversation-padding" />
     <slot />
   </div>
 </template>
@@ -42,11 +42,11 @@ defineExpose({
 </script>
 
 <style scoped>
-.chat-conversation-container {
+.--fc-conversation-container {
   @apply --fc-flex --fc-flex-col --fc-gap-4 --fc-max-h-[500px] --fc-min-h-[500px] --fc-overflow-auto --fc-px-4;
 }
 
-.chat-conversation-padding {
+.--fc-conversation-padding {
   @apply --fc-p-1;
 }
 </style>

@@ -1,25 +1,25 @@
 <template>
-  <div class="chat-header-container">
-    <div class="chat-header-user">
-      <div class="chat-user-avatar">
+  <div class="--fc-header-container">
+    <div class="--fc-header-user">
+      <div class="--fc-user-avatar">
         <img
           v-if="options?.hostUser?.avatarUrl"
           :src="options?.hostUser?.avatarUrl"
         />
       </div>
-      <div class="chat-user-name">
+      <div class="--fc-user-name">
         {{ options?.hostUser?.name }}
       </div>
     </div>
-    <div class="chat-header-buttons">
-      <button class="chat-reset-button" @click="$emit('click-reset-button')">
-        <UndoIcon class="chat-icon" />
+    <div class="--fc-header-buttons">
+      <button class="--fc-reset-button" @click="$emit('click-reset-button')">
+        <UndoIcon class="--fc-icon" />
       </button>
-      <button class="chat-toggle-button">
-        <MinusIcon class="chat-icon" />
+      <button class="--fc-toggle-button">
+        <MinusIcon class="--fc-icon" />
       </button>
-      <button class="chat-close-button">
-        <CloseIcon class="chat-icon" />
+      <button class="--fc-close-button">
+        <CloseIcon class="--fc-icon" />
       </button>
     </div>
   </div>
@@ -41,47 +41,47 @@ const $emit = defineEmits(["click-reset-button"]);
 </script>
 
 <style scoped>
-.chat-header-container {
-  @apply --fc-bg-[var(--chat-primary-color)] --fc-px-4 --fc-py-2 --fc-text-white --fc-flex --fc-items-center --fc-justify-between;
+.--fc-header-container {
+  @apply --fc-bg-[var(--fc-primary-color)] --fc-px-4 --fc-py-2 --fc-text-white --fc-flex --fc-items-center --fc-justify-between;
 }
 
-.chat-header-user {
+.--fc-header-user {
   @apply --fc-flex --fc-items-center --fc-gap-2;
 }
 
-.chat-user-name {
+.--fc-user-name {
   @apply --fc-font-semibold;
 }
 
-.chat-user-avatar {
+.--fc-user-avatar {
   @apply --fc-w-[30px] --fc-h-[30px] --fc-rounded-full --fc-bg-gray-300;
 }
 
-.chat-user-avatar img {
+.--fc-user-avatar img {
   @apply --fc-w-full;
 }
 
-.chat-header-buttons {
+.--fc-header-buttons {
   @apply --fc-flex --fc-items-center --fc-gap-2;
 }
 
-.chat-header-buttons button {
+.--fc-header-buttons button {
   @apply --fc-shadow --fc-h-4 --fc-w-4 --fc-rounded-full --fc-flex --fc-items-center --fc-justify-center hover:--fc-text-gray-800 hover:--fc-fill-gray-800;
 }
 
-.chat-header-buttons button .chat-icon {
+.--fc-header-buttons button .--fc-icon {
   @apply --fc-text-[10px] --fc-h-[10px] --fc-w-[10px];
 }
 
-.chat-toggle-button {
+.--fc-toggle-button {
   @apply --fc-bg-yellow-500 --fc-text-yellow-500 --fc-fill-yellow-500;
 }
 
-.chat-reset-button {
+.--fc-reset-button {
   @apply --fc-bg-green-500 --fc-text-green-500 --fc-fill-green-500;
 }
 
-.chat-close-button {
+.--fc-close-button {
   @apply --fc-bg-red-500 --fc-text-red-500 --fc-fill-red-500;
 }
 </style>

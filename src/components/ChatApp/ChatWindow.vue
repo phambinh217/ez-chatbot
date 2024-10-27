@@ -1,13 +1,13 @@
 <template>
   <div
-    class="chat-window"
+    class="--fc-window"
     :style="chatWindowStyles"
   >
     <ChatHeader
       :options="options"
       @click-reset-button="handleClickResetButton"
     />
-    <div class="chat-body">
+    <div class="--fc-body">
       <ChatConversation ref="chatConversationRef" :options="options">
         <ChatMessage
           v-for="(message, index) in conversationMessages"
@@ -306,7 +306,7 @@ defineExpose({
 </script>
 
 <style scoped>
-.chat-window {
+.--fc-window {
   @apply --fc-bg-white --fc-w-[400px] --fc-rounded-xl --fc-flex --fc-flex-col --fc-text-sm --fc-overflow-hidden --fc-relative --fc-shadow-2xl;
 }
 
@@ -315,11 +315,11 @@ defineExpose({
 }
 
 .skip-container button {
-  @apply --fc-border-blue-200 --fc-px-3 --fc-py-1 --fc-text-[var(--chat-primary-color)] --fc-rounded-full;
-  @apply --fc-border --fc-border-solid --fc-border-[var(--chat-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
+  @apply --fc-border-blue-200 --fc-px-3 --fc-py-1 --fc-text-[var(--fc-primary-color)] --fc-rounded-full;
+  @apply --fc-border --fc-border-solid --fc-border-[var(--fc-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
 }
 
-.chat-body {
+.--fc-body {
   @apply --fc-relative;
 }
 </style>
