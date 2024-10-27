@@ -6,7 +6,7 @@ import { fileURLToPath, URL } from "node:url";
 export default defineConfig({
   vite: {
     plugins: [
-      svgLoader(), // Thêm vite-svg-loader vào plugins của Vite
+      svgLoader(),
     ],
 
     resolve: {
@@ -16,8 +16,8 @@ export default defineConfig({
     },
   },
 
-  title: "FormChat documents",
-  description: "FormChat documents",
+  title: "FormChat",
+  description: "FormChat",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -36,7 +36,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      { icon: "github", link: "https://github.com/phambinh217/formchat" },
     ],
   },
 });
