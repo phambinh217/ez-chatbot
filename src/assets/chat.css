@@ -35,7 +35,7 @@
 }
 
 .--fc-application {
-    @apply --fc-text-base --fc-font-sans;
+    @apply --fc-text-base --fc-font-sans --fc-text-gray-700;;
 }
 
 .--fc-application input,
