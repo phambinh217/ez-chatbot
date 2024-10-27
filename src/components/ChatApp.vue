@@ -24,10 +24,10 @@
     </Transition>
     <div
       v-if="showBubble"
-      class="--fc-shadow-lg --fc-cursor-pointer --fc-h-[70px] --fc-w-[70px] --fc-bg-[var(--fc-primary-color)] --fc-rounded-full --fc-flex --fc-items-center --fc-justify-center"
+      class="--fc-bubble-container"
       @click="handleClickToggleChatWindow"
     >
-      <ForumOutlineIcon class="--fc-w-[40px] --fc-fill-white" />
+      <ForumOutlineIcon class="--fc-bubble-icon" />
     </div>
   </div>
 </template>
@@ -124,5 +124,13 @@ defineExpose({
 <style scoped>
 .--fc-application {
   @apply --fc-fixed --fc-right-[50px] --fc-bottom-[50px] --fc-flex --fc-flex-col --fc-justify-center --fc-items-end --fc-gap-5;
+}
+
+.--fc-bubble-container {
+  @apply --fc-shadow-lg --fc-cursor-pointer --fc-h-[70px] --fc-w-[70px] --fc-bg-[var(--fc-primary-color)] --fc-rounded-full --fc-flex --fc-items-center --fc-justify-center;
+}
+
+.--fc-bubble-icon {
+  @apply --fc-w-[40px] --fc-fill-white;
 }
 </style>
