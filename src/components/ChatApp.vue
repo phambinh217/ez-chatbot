@@ -33,9 +33,11 @@
 </template>
 
 <script setup>
+import "@/assets/chat.css";
+
 import { ref, watch, computed } from "vue";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
-import ForumOutlineIcon from "../assets/svgIcons/forum-outline.svg";
+import ForumOutlineIcon from "@/assets/svgIcons/forum-outline.svg";
 
 const props = defineProps({
   scripts: {
