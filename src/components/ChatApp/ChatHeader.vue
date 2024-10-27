@@ -54,7 +54,7 @@ const $emit = defineEmits(["click-reset-button"]);
 }
 
 .--fc-user-avatar {
-  @apply --fc-w-[30px] --fc-h-[30px] --fc-rounded-full --fc-bg-gray-300;
+  @apply --fc-w-[30px] --fc-h-[30px] --fc-rounded-full --fc-bg-gray-300 --fc-overflow-hidden;
 }
 
 .--fc-user-avatar img {
