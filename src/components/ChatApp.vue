@@ -94,6 +94,7 @@ const handleClickToggleChatWindow = () => {
 
 const initStyle = () => {
   if (typeof document == "undefined") {
+    console.log("document is undefined");
     return false
   }
 
