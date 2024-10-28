@@ -1,4 +1,4 @@
-# Roadmap
+# MVP Roadmap
 
 ```
 [] Click out site to close
@@ -15,4 +15,11 @@
 [] Date time
 [] Rating
 [] Yes No
+```
+
+## Guides
+```
+[] With wordpress
+[] With shopify
+[] With google sheet, slack, discord, mail
 ```
