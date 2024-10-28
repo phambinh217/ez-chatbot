@@ -5,6 +5,7 @@
 [] Pre questions
 [] Typing effect
 [] Add more themes
+[] Drag and drop builder 
 ```
 
 ## Field types
