@@ -28,10 +28,19 @@ export default defineConfig({
     sidebar: [
       {
         text: "Examples",
-        items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
-        ],
+        link: "/examples"
+      },
+      {
+        text: "Getting started",
+        link: "/getting-started"
+      },
+      {
+        text: "Field types",
+        link: "/field-types"
+      },
+      {
+        text: "Digging Deeper",
+        link: "/field-types"
       },
     ],
 

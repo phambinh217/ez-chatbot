@@ -8,19 +8,24 @@ hero:
   tagline: Transform a traditional form to chat box
   actions:
     - theme: brand
-      text: Try demo
-      link: /markdown-examples
+      text: Examples
+      link: /examples
     - theme: alt
-      text: Getting started
-      link: /api-examples
+      text: WordPress integration
+      link: /examples
+    - theme: alt
+      text: Shopify integration
+      link: /examples
 
 features:
-  - title: Feature A
+  - title: 10+ Field types
+    details: Simle question, long question, radio question, rating, datetime picker,...
+  - title: Easy customize
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
+  - title: Perfect responsive
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Lightweight
+    details: Only 106 KB js, and 17 KB css before gzip
 ---
 
 <ChatApp />
