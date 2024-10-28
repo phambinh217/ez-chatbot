@@ -93,6 +93,10 @@ const handleClickToggleChatWindow = () => {
 };
 
 const initStyle = () => {
+  if (typeof document == "undefined") {
+    return false
+  }
+
   const rootEl = document.querySelector(":root");
 
   const primaryColor = props.options?.styles?.primaryColor;
