@@ -15,11 +15,8 @@
       <button class="--fc-reset-button" @click="$emit('click-reset-button')">
         <UndoIcon class="--fc-icon" />
       </button>
-      <button class="--fc-toggle-button">
-        <MinusIcon class="--fc-icon" />
-      </button>
       <button class="--fc-close-button">
-        <CloseIcon class="--fc-icon" />
+        <CloseIcon class="--fc-icon" @click="$emit('click-close-button')" />
       </button>
     </div>
   </div>
@@ -28,7 +25,6 @@
 <script setup>
 import CloseIcon from "../../assets/svgIcons/close.svg";
 import UndoIcon from "../../assets/svgIcons/undo.svg";
-import MinusIcon from "../../assets/svgIcons/minus.svg";
 
 defineProps({
   options: {
@@ -37,7 +33,7 @@ defineProps({
   },
 });
 
-const $emit = defineEmits(["click-reset-button"]);
+const $emit = defineEmits(["click-reset-button", 'click-close-button']);
 </script>
 
 <style scoped>
@@ -73,12 +69,8 @@ const $emit = defineEmits(["click-reset-button"]);
   @apply --fc-text-[10px] --fc-h-[10px] --fc-w-[10px];
 }
 
-.--fc-toggle-button {
-  @apply --fc-bg-yellow-500 --fc-text-yellow-500 --fc-fill-yellow-500;
-}
-
 .--fc-reset-button {
-  @apply --fc-bg-green-500 --fc-text-green-500 --fc-fill-green-500;
+  @apply --fc-bg-yellow-500 --fc-text-yellow-500 --fc-fill-yellow-500;
 }
 
 .--fc-close-button {

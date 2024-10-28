@@ -1,6 +1,6 @@
 <template>
   <div
-    class="--fc-application"
+    class="--fc-application --fc-formchat-dot-net"
     :class="{
       '--fc-dark-theme': options?.styles?.theme === 'dark',
       '--fc-light-theme': options?.styles?.theme === 'light',
@@ -20,6 +20,7 @@
         :options="options"
         :scripts="scripts"
         @finished="handleFinished"
+        @click-close-button="chatWindowOpen = false"
       />
     </Transition>
     <div
@@ -35,7 +36,7 @@
 <script setup>
 import "@/assets/chat.css";
 
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, onMounted } from "vue";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
 import ForumOutlineIcon from "@/assets/svgIcons/forum-outline.svg";
 
@@ -59,6 +60,7 @@ const $emit = defineEmits(["finished"]);
 const finishedCallback = ref(null);
 const chatWindowRef = ref(null);
 const chatWindowOpen = ref(false);
+const conversationWasStarted = ref(false);
 
 const showBubble = computed(
   () => props.options?.embedded?.type != "background"
@@ -118,6 +120,15 @@ watch(
     immediate: true,
   }
 );
+
+watch(chatWindowOpen, () => {
+  if (chatWindowOpen.value && conversationWasStarted.value == false) {
+    chatWindowRef.value?.startConversation();
+    conversationWasStarted.value = true;
+  }
+})
+
+onMounted(() => console.log('%c This website is using formchat.net to create chat boxes. Please visit https://formchat.net/ to get started.', 'background: #222; color: #bada55'))
 
 defineExpose({
   onFinished,

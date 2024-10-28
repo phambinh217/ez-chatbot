@@ -6,6 +6,7 @@
     <ChatHeader
       :options="options"
       @click-reset-button="handleClickResetButton"
+      @click-close-button="handleClickCloseButton"
     />
     <div class="--fc-body">
       <ChatConversation ref="chatConversationRef" :options="options">
@@ -62,7 +63,7 @@ const props = defineProps({
   },
 });
 
-const $emit = defineEmits(["finished"]);
+const $emit = defineEmits(["finished", "click-close-button"]);
 
 const chatWindowStyles = computed(() => {
   return props.options?.styles?.chatWindow;
@@ -179,6 +180,10 @@ const runScript = (scriptId) => {
   }, 300);
 };
 
+const startConversation = () => {
+  runScript();
+};
+
 const runNextScriptIfHas = async (requiredAnswer = true) => {
   /**
    * If current script is a question
@@ -252,8 +257,6 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
   }
 };
 
-onMounted(() => runScript());
-
 const handleUserAddNewChatMessage = async () => {
   if (!userChatMessage.value.trim()) {
     return;
@@ -288,6 +291,10 @@ const handleClickResetButton = () => {
   chatResetConfirmModal.value.open = true;
 }
 
+const handleClickCloseButton = () => {
+  $emit("click-close-button");
+}
+
 const handleConfirmResetChat = () => {
   chatResetConfirmModal.value.open = false;
 
@@ -302,6 +309,7 @@ const handleConfirmResetChat = () => {
 
 defineExpose({
   addConversationMessages,
+  startConversation,
 })
 </script>
 
