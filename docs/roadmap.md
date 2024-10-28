@@ -4,6 +4,7 @@
 [] Click out site to close
 [] Pre questions
 [] Typing effect
+[] Add more themes
 ```
 
 ## Field types
