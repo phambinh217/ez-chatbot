@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="--fc-window"
-    :style="chatWindowStyles"
-  >
+  <div class="--fc-window" :style="chatWindowStyles">
     <ChatHeader
       :options="options"
       @click-reset-button="handleClickResetButton"
@@ -39,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, computed } from "vue";
 import ChatComposer from "./ChatComposer.vue";
 import ChatConversation from "./ChatConversation.vue";
 import ChatMessage from "./ChatMessage.vue";
@@ -71,7 +68,7 @@ const chatWindowStyles = computed(() => {
 
 const chatResetConfirmModal = ref({
   open: false,
-})
+});
 
 const messageFactory = () => ({
   id: null,
@@ -154,35 +151,37 @@ const addConversationMessages = (data) => {
 };
 
 const runScript = (scriptId) => {
-  setTimeout(() => {
-    let script;
+  let script;
 
-    if (!scriptId) {
-      script = scripts.value.find(() => true);
-    } else {
-      script = scripts.value.find((s) => s.id == scriptId);
-    }
+  if (!scriptId) {
+    script = scripts.value.find(() => true);
+  } else {
+    script = scripts.value.find((s) => s.id == scriptId);
+  }
 
-    if (!script) {
-      return;
-    }
+  if (!script) {
+    return;
+  }
 
-    currentScript.value = script;
+  currentScript.value = script;
 
-    addConversationMessages({
-      position: "left",
-      content: script.content,
-      options: script.options,
-      type: script.type,
-    });
+  addConversationMessages({
+    position: "left",
+    content: script.content,
+    options: script.options,
+    type: script.type,
+  });
 
-    runNextScriptIfHas();
-  }, 300);
+  runNextScriptIfHas();
 };
 
-const startConversation = () => {
-  runScript();
+const runScriptWithDelay = (scriptId) => {
+  setTimeout(() => runScript(scriptId), 300);
 };
+
+const startConversationWithDelay = () => runScriptWithDelay(null);
+
+const startConversation = () => runScript(null);
 
 const runNextScriptIfHas = async (requiredAnswer = true) => {
   /**
@@ -238,7 +237,7 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
    * then run it
    */
   if (nextScriptId) {
-    runScript(nextScriptId);
+    runScriptWithDelay(nextScriptId);
     return;
   }
 
@@ -283,17 +282,19 @@ const handleSelectOptionInMessage = async ({ option }) => {
   await runNextScriptIfHas();
 };
 
+const triggerSelectOptionInMessage = handleSelectOptionInMessage;
+
 const handleClickSkipButton = async () => {
   await runNextScriptIfHas(false);
 };
 
 const handleClickResetButton = () => {
   chatResetConfirmModal.value.open = true;
-}
+};
 
 const handleClickCloseButton = () => {
   $emit("click-close-button");
-}
+};
 
 const handleConfirmResetChat = () => {
   chatResetConfirmModal.value.open = false;
@@ -304,18 +305,20 @@ const handleConfirmResetChat = () => {
   latestUserMessage.value = messageFactory();
   currentUserAnswer.value = messageFactory();
 
-  runScript();
-}
+  runScriptWithDelay();
+};
 
 defineExpose({
   addConversationMessages,
+  triggerSelectOptionInMessage,
+  startConversationWithDelay,
   startConversation,
-})
+});
 </script>
 
 <style scoped>
 .--fc-window {
-  @apply --fc-bg-white --fc-w-[400px] --fc-rounded-xl --fc-flex --fc-flex-col --fc-text-sm --fc-overflow-hidden --fc-relative --fc-shadow-2xl;
+  @apply --fc-bg-white --fc-rounded-xl --fc-flex --fc-flex-col --fc-text-sm --fc-overflow-hidden --fc-relative --fc-shadow-2xl;
 }
 
 .skip-container {

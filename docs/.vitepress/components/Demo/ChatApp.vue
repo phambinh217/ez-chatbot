@@ -1,5 +1,9 @@
 <template>
-  <ChatApp :scripts="scripts" :options="options" />
+  <ChatApp
+    :scripts="scripts"
+    :options="options"
+    :use-welcome-message="true"
+  />
 </template>
 
 

@@ -90,12 +90,12 @@ const handleSelectOptionInMessage = (option, index) => {
   @apply --fc-py-1 --fc-px-3 --fc-rounded-full --fc-bg-white --fc-text-gray-600 --fc-text-sm --fc-cursor-pointer hover:--fc-bg-gray-200 --fc-transition-all --fc-duration-300;
 }
 
-.--fc-message-agent-user .--fc-message-content-container {
-  @apply --fc-bg-gray-200;
+.--fc-message-content-container {
+  @apply --fc-bg-[var(--fc-primary-light-color)];
 }
 
-.--fc-message-host-user .--fc-message-content-container {
-  @apply --fc-bg-[var(--fc-primary-light-color)];
+.--fc-message-agent-user .--fc-message-content-container {
+  @apply --fc-bg-gray-200;
 }
 
 .--fc-message-text {
