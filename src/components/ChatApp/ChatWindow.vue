@@ -98,7 +98,7 @@ const context = computed(() => {
     currentScriptIndex: currentScriptIndex.value,
     latestUserMessage: latestUserMessage.value,
     conversationMessages: conversationMessages.value,
-    addConversationMessages: addConversationMessages,
+    addConversationMessage: addConversationMessage,
   };
 });
 
@@ -141,7 +141,7 @@ const frequencyNextScriptId = computed(() => {
   return scriptId;
 });
 
-const addConversationMessages = (data) => {
+const addConversationMessage = (data) => {
   conversationMessages.value.push(data);
 
   /**
@@ -179,7 +179,7 @@ const runScript = (scriptId) => {
 
   currentScript.value = script;
 
-  addConversationMessages({
+  addConversationMessage({
     position: "left",
     content: script.content,
     options: script.options,
@@ -230,7 +230,7 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
   }
 
   // if (currentScript.value.type == 'email' && currentUserAnswer.value.content.includes('@') == false) {
-  //   addConversationMessages({
+  //   addConversationMessage({
   //     position: 'left',
   //     type: 'text',
   //     content: 'Vui lòng nhập đ goede email'
@@ -296,7 +296,7 @@ const handleUserAddNewChatMessage = async () => {
     return;
   }
 
-  addConversationMessages({
+  addConversationMessage({
     position: "right",
     content: userChatMessage.value,
     type: "text",
@@ -308,7 +308,7 @@ const handleUserAddNewChatMessage = async () => {
 };
 
 const handleSelectOptionInMessage = async ({ option }) => {
-  addConversationMessages({
+  addConversationMessage({
     position: "right",
     content: option,
     type: "text",
@@ -344,7 +344,7 @@ const handleConfirmResetChat = () => {
 };
 
 defineExpose({
-  addConversationMessages,
+  addConversationMessage,
   triggerSelectOptionInMessage,
   startConversationWithDelay,
   startConversation,

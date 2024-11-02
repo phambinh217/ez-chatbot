@@ -51,7 +51,7 @@ const scripts = ref([
           return resolve(3);
         }
 
-        context.addConversationMessages({
+        context.addConversationMessage({
           position: "left",
           type: "text",
           content: "Bạn hãy giúp mình chọn một trong số cá lựa chọn trên nhé",
@@ -110,7 +110,7 @@ const scripts = ref([
     next: (context, answer) =>
       new Promise((resolve, reject) => {
         if (!answer.includes("@")) {
-          context.addConversationMessages({
+          context.addConversationMessage({
             position: "left",
             content: "Hình như bạn nhập sai địa chỉ email",
             type: "text",
