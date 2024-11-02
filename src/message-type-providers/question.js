@@ -1,8 +1,7 @@
-import QuestionMessage from "@/components/ChatApp/MessageTypes/QuestionMessage.vue";
-
+import CommonMessage from "@/components/ChatApp/MessageTemplates/CommonMessage.vue";
 
 export default {
-  component: QuestionMessage,
+  component: CommonMessage,
 
   isQuestion: true,
 };
