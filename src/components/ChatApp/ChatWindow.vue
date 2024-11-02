@@ -97,6 +97,7 @@ const context = computed(() => {
     currentScriptIndex: currentScriptIndex.value,
     latestUserMessage: latestUserMessage.value,
     conversationMessages: conversationMessages.value,
+    addConversationMessages: addConversationMessages,
   };
 });
 
@@ -209,15 +210,8 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
     if (nextScriptId instanceof Promise) {
       try {
         nextScriptId = await nextScriptId;
-      } catch (rejectMessage) {
-        if (rejectMessage) {
-          addConversationMessages({
-            position: "left",
-            type: "text",
-            ...rejectMessage,
-          });
-        }
-
+      } catch (error) {
+        console.log(error)
         return;
       }
     }
