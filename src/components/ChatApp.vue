@@ -5,6 +5,7 @@
       '--fc-dark-theme': options?.styles?.theme === 'dark',
       '--fc-light-theme': options?.styles?.theme === 'light',
     }"
+    v-click-outside="handleClickOutSideChatApp"
   >
     <div class="--fc-application-inner">
       <Transition
@@ -17,7 +18,7 @@
       >
         <div
           v-show="chatWindowOpen"
-          class="--fc-absolute --fc-bottom-[100%] --fc-w-full"
+          class="--fc-absolute --fc-bottom-[100%] --fc-w-[400px]"
         >
           <ChatWindow
             ref="chatWindowRef"
@@ -39,7 +40,7 @@
       >
         <div
           v-show="showWelcomeMessage"
-          class="--fc-absolute --fc-bottom-[100%] --fc-w-[70%]"
+          class="--fc-absolute --fc-bottom-[100%] --fc-w-[350px]"
         >
           <ChatWelcomeMessage
             :message="welcomeMessage"
@@ -63,6 +64,7 @@
 import "@/assets/chat.css";
 
 import { ref, watch, computed, onMounted } from "vue";
+import { directive as vClickOutside } from "click-outside-vue3";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
 import ChatWelcomeMessage from "./ChatApp/ChatWelcomeMessage.vue";
 import ForumOutlineIcon from "@/assets/svgIcons/forum-outline.svg";
@@ -162,6 +164,22 @@ const handleSelectOptionInWelcomeMessage = (payload) => {
   conversationWasStarted.value = true;
 };
 
+const handleClickOutSideChatApp = (event) => {
+  console.log('handleClickOutSideChatApp');
+
+  if (!props.options?.clickOutSideClose) {
+    return;
+  }
+
+  if (!chatWindowOpen.value) {
+    return;
+  }
+
+  console.log(event.target.className)
+
+  hideChatWindow();
+};
+
 const initStyle = () => {
   if (typeof document == "undefined") {
     return false;
@@ -213,7 +231,6 @@ defineExpose({
 
 .--fc-application-inner {
   @apply --fc-flex --fc-flex-col --fc-justify-center --fc-items-end --fc-gap-5;
-  @apply --fc-w-[400px];
 }
 
 .--fc-bubble-container {

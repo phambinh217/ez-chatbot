@@ -135,6 +135,7 @@ const options = ref({
   closeButton: true,
   toggleButton: true,
   resetButton: true,
+  clickOutSideClose: true,
 
   styles: {
     theme: "dark",
