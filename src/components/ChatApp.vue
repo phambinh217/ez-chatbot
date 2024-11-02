@@ -100,7 +100,7 @@ const conversationWasStarted = ref(false);
  * Only show welcome message if conversation was not started
  */
 const showWelcomeMessage = computed(
-  () => props.useWelcomeMessage && conversationWasStarted.value == false
+  () => props.options.welcomeMessage && conversationWasStarted.value == false
 );
 
 const welcomeMessage = computed(() => props.scripts[0]);
