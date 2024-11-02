@@ -30,8 +30,7 @@
 
 <script setup>
 import { computed } from "vue";
-import TextMessage from "./MessageTypes/TextMessage.vue";
-import QuestionMessage from "./MessageTypes/QuestionMessage.vue";
+import messageTypeProviders from '@/message-type-providers';
 
 const props = defineProps({
   message: {
@@ -48,14 +47,8 @@ const props = defineProps({
 const $emit = defineEmits(["select-option"]);
 
 const _message = computed(() => {
-  const components = {
-    text: TextMessage,
-    question: QuestionMessage,
-    email: TextMessage,
-  };
-
   return {
-    component: components[props.message.type] || "",
+    component: messageTypeProviders[props.message.type]?.component || "",
     ...props.message,
   };
 });
