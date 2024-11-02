@@ -211,33 +211,25 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
     return false;
   }
 
-  /**
-   * Validate answer
-   */
-  const messageTypeProvider = messageTypeProviders[currentScript.value.type];
+  if (requiredAnswer) {
+    /**
+     * Validate answer
+     */
+    const messageTypeProvider = messageTypeProviders[currentScript.value.type];
 
-  if (messageTypeProvider && messageTypeProvider?.onValidate) {
-    const result = messageTypeProvider.onValidate({
-      context: context.value,
-      script: currentScript.value,
-      answer: currentUserAnswer.value,
-      options: props.options,
-    });
+    if (messageTypeProvider && messageTypeProvider?.onValidate) {
+      const result = messageTypeProvider.onValidate({
+        context: context.value,
+        script: currentScript.value,
+        answer: currentUserAnswer.value,
+        options: props.options,
+      });
 
-    if (result === false) {
-      return false;
+      if (result === false) {
+        return false;
+      }
     }
   }
-
-  // if (currentScript.value.type == 'email' && currentUserAnswer.value.content.includes('@') == false) {
-  //   addConversationMessage({
-  //     position: 'left',
-  //     type: 'text',
-  //     content: 'Vui lòng nhập đ goede email'
-  //   })
-
-  //   return false;
-  // }
 
   let nextScriptId = currentScript.value.next;
 
@@ -361,8 +353,8 @@ defineExpose({
 }
 
 .skip-container button {
-  @apply --fc-border-blue-200 --fc-px-3 --fc-py-1 --fc-text-[var(--fc-primary-color)] --fc-rounded-full;
-  @apply --fc-border --fc-border-solid --fc-border-[var(--fc-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
+  @apply --fc-border-blue-200 --fc-px-3 --fc-py-2 --fc-text-[var(--fc-primary-color)] --fc-rounded-full;
+  @apply --fc-border --fc-border-solid --fc-border-[var(--fc-primary-color)] --fc-bg-white --fc-shadow;
 }
 
 .--fc-body {

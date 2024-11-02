@@ -10,6 +10,7 @@ const scripts = ref([
   {
     content: 'Địa chỉ email của bạn là gì nhỉ?',
     type: 'email',
+    skippable: true,
     errorMessage: {
       content: 'Hình như địa chỉ email của bạn chưa chính xác',
     },
