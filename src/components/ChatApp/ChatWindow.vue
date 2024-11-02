@@ -219,7 +219,7 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
   if (messageTypeProvider && messageTypeProvider?.onValidate) {
     const result = messageTypeProvider.onValidate({
       context: context.value,
-      question: currentScript.value,
+      script: currentScript.value,
       answer: currentUserAnswer.value,
       options: props.options,
     });

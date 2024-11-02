@@ -5,13 +5,16 @@ export default {
 
   isQuestion: true,
 
-  onValidate({ context, answer }) {
+  onValidate({ context, answer, script }) {
     if (answer.content.includes('@') == false) {
-      context.addConversationMessage({
+      const errorMessage = {
         type: 'text',
         position: 'left',
-        content: 'Hình như bạn nhập sai địa chỉ email thì phải',
-      })
+        content: 'Your email seem to be invalid',
+        ...script.errorMessage,
+      }
+
+      context.addConversationMessage(errorMessage)
 
       return false
     }

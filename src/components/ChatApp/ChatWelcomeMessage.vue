@@ -26,6 +26,6 @@ const handleSelectOptionInMessage = ({ message, option, optionIndex }) => {
 
 <style scoped>
 .--fc-welcome-message-container {
-  @apply --fc-shadow-2xl --fc-rounded-2xl;
+  @apply --fc-shadow-2xl --fc-rounded-2xl --fc-flex --fc-items-end --fc-flex-col;
 }
 </style>
