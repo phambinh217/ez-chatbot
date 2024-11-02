@@ -129,7 +129,7 @@ export default {
   options: {
     hostUser: {
       name: "Phạm Bình",
-      avatarUrl: "https://avatars.githubusercontent.com/u/15150529?v=4",
+      avatarUrl: "/images/phambinh.jpeg",
     },
 
     placeholder: "Type your message here...",
