@@ -6,33 +6,33 @@
     }"
   >
     <div class="--fc-message-container">
-      <div v-if="message.position == 'left'" class="--fc-message-user">
+      <div v-if="_message.position == 'left'" class="--fc-message-user">
         <div class="--fc-message-avatar">
-          <img v-if="options?.hostUser?.avatarUrl" :src="options?.hostUser?.avatarUrl" />
+          <img
+            v-if="options?.hostUser?.avatarUrl"
+            :src="options?.hostUser?.avatarUrl"
+          />
         </div>
       </div>
       <div class="--fc-message-content-container">
-        <div class="--fc-message-content-inner">
-          <div class="--fc-message-text">
-            {{ message.content }}
-          </div>
-          <div v-if="message.options" class="--fc-message-option-list">
-            <div
-              v-for="(option, index) in message.options"
-              :key="index"
-              class="--fc-message-option-item"
-              @click="handleSelectOptionInMessage(option, index)"
-            >
-              {{ option }}
-            </div>
-          </div>
-        </div>
+        <template v-if="_message.component">
+          <component
+            :is="_message.component"
+            :message="_message"
+            :options="options"
+            @select-option="handleSelectOptionInMessage"
+          />
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from "vue";
+import TextMessage from "./MessageTypes/TextMessage.vue";
+import QuestionMessage from "./MessageTypes/QuestionMessage.vue";
+
 const props = defineProps({
   message: {
     type: Object,
@@ -42,14 +42,25 @@ const props = defineProps({
   options: {
     type: Object,
     default: () => {},
-  }
+  },
 });
 
 const $emit = defineEmits(["select-option"]);
 
-const handleSelectOptionInMessage = (option, index) => {
-  const message = props.message;
-  $emit("select-option", { message, option, optionIndex: index });
+const _message = computed(() => {
+  const components = {
+    text: TextMessage,
+    question: QuestionMessage,
+  };
+
+  return {
+    component: components[props.message.type] || "",
+    ...props.message,
+  };
+});
+
+const handleSelectOptionInMessage = (payload) => {
+  $emit("select-option", payload);
 };
 </script>
 
@@ -76,28 +87,11 @@ const handleSelectOptionInMessage = (option, index) => {
 
 .--fc-message-content-container {
   @apply --fc-p-3 --fc-rounded-2xl --fc-gap-3 --fc-inline-block;
-}
-
-.--fc-message-content-inner {
-  @apply --fc-flex --fc-flex-col --fc-gap-2;
-}
-
-.--fc-message-option-list {
-  @apply --fc-flex --fc-flex-row --fc-flex-wrap --fc-gap-1;
-}
-
-.--fc-message-option-item {
-  @apply --fc-py-1 --fc-px-3 --fc-rounded-full --fc-bg-white --fc-text-gray-600 --fc-text-sm --fc-cursor-pointer hover:--fc-bg-gray-200 --fc-transition-all --fc-duration-300;
-}
-
-.--fc-message-content-container {
   @apply --fc-bg-[var(--fc-primary-light-color)];
+
 }
 
 .--fc-message-agent-user .--fc-message-content-container {
   @apply --fc-bg-gray-200;
-}
-
-.--fc-message-text {
 }
 </style>
