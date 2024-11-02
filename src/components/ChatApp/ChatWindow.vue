@@ -37,12 +37,13 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { randomString } from "@/helpers/string";
 import ChatComposer from "./ChatComposer.vue";
 import ChatConversation from "./ChatConversation.vue";
 import ChatMessage from "./ChatMessage.vue";
 import ChatHeader from "./ChatHeader.vue";
 import ChatResetConfirmModal from "./ChatResetConfirmModal.vue";
-import { randomString } from "@/helpers/string";
+import messageTypeProviders from '@/message-type-providers';
 
 const props = defineProps({
   scripts: {
@@ -114,7 +115,8 @@ const currentScriptIndex = computed(() => {
 
 const chatConversationRef = ref();
 
-const isQuestionScript = (script) => script?.type == "question";
+const isQuestionScript = (script) =>
+  ["question", "email"].includes(script.type);
 
 const frequencyNextScriptId = computed(() => {
   let scriptId = null;
@@ -198,6 +200,34 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
     return false;
   }
 
+  /**
+   * Validate answer
+   */
+  const messageTypeProvider = messageTypeProviders[currentScript.value.type];
+
+  if (messageTypeProvider && messageTypeProvider?.onValidate) {
+    const result = messageTypeProvider.onValidate({
+      context: context.value,
+      question: currentScript.value,
+      answer: currentUserAnswer.value,
+      options: props.options,
+    });
+
+    if (result === false) {
+      return false;
+    }
+  }
+
+  // if (currentScript.value.type == 'email' && currentUserAnswer.value.content.includes('@') == false) {
+  //   addConversationMessages({
+  //     position: 'left',
+  //     type: 'text',
+  //     content: 'Vui lòng nhập đ goede email'
+  //   })
+
+  //   return false;
+  // }
+
   let nextScriptId = currentScript.value.next;
 
   /**
@@ -211,7 +241,7 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
       try {
         nextScriptId = await nextScriptId;
       } catch (error) {
-        console.log(error)
+        console.log(error);
         return;
       }
     }

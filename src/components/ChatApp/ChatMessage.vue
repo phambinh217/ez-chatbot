@@ -51,6 +51,7 @@ const _message = computed(() => {
   const components = {
     text: TextMessage,
     question: QuestionMessage,
+    email: TextMessage,
   };
 
   return {
