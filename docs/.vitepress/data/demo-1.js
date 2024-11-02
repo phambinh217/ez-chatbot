@@ -20,42 +20,33 @@ export default {
     },
 
     {
-      type: "question",
+      type: "select",
       content: "Website bạn muốn lấy dữ liệu, là nền tảng nào?",
 
       options: [
-        "Shopee",
-        "Temu",
-        "AliExpress",
-        "Amazone",
-        "Shopify",
-        "Sapo",
-        "Haravan",
-        "Nền tảng khác",
+        { value: "shopee", label: "Shopee" },
+        { value: "temu", label: "Temu" },
+        { value: "aliexpress", label: "AliExpress" },
+        { value: "amazone", label: "Amazone" },
+        { value: "shopify", label: "Shopify" },
+        { value: "sapo", label: "Sapo" },
+        { value: "haravan", label: "Haravan" },
+        { value: "other", label: "Nền tảng khác" },
       ],
 
-      next: (context, option) =>
-        new Promise((resolve, reject) => {
-          if (["Shopee", "Temu", "AliExpress", "Amazone"].includes(option)) {
-            return resolve(1);
-          }
+      next: {
+        shopee: 1,
+        temu: 1,
+        aliexpress: 1,
+        shopify: 2,
+        sapo: 2,
+        haravan: 2,
+        other: 3,
+      },
 
-          if (["Shopify", "Sapo", "Haravan"].includes(option)) {
-            return resolve(2);
-          }
-
-          if (["Nền tảng khác"].includes(option)) {
-            return resolve(3);
-          }
-
-          context.addConversationMessage({
-            position: "left",
-            type: "text",
-            content: "Bạn hãy giúp mình chọn một trong số cá lựa chọn trên nhé",
-          });
-
-          return reject();
-        }),
+      errorMessage: {
+        content: "Bạn hãy chọn một trong số các lựa chọn trên nhé",
+      },
     },
 
     {

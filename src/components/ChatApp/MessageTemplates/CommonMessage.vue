@@ -1,7 +1,7 @@
 <template>
   <div class="--fc-message-content-inner">
     <div class="--fc-message-text">
-      {{ message.content }}
+      {{ message.content?.label || message.content }}
     </div>
     <div v-if="message.options" class="--fc-message-option-list">
       <div
@@ -10,7 +10,7 @@
         class="--fc-message-option-item"
         @click="handleSelectOptionInMessage(option, index)"
       >
-        {{ option }}
+        {{ option?.label || option }}
       </div>
     </div>
   </div>

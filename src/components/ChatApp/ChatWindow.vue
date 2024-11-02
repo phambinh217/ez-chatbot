@@ -251,6 +251,19 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
   }
 
   /**
+   * If next script is an object
+   * Example
+   * {
+   *    optionA: 1,
+   *    optionB: 2
+   * }
+   */
+  if (typeof nextScriptId == "object") {
+    const answer = currentUserAnswer.value.content?.value || currentUserAnswer.value.content;
+    nextScriptId = nextScriptId[answer] || nextScriptId?.__unmatched;
+  }
+
+  /**
    * If next script is a empty
    * And has next script
    * then run next script
