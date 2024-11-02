@@ -8,17 +8,17 @@ import ChatApp from "@/components/ChatApp.vue";
 
 const scripts = ref([
   {
-    content: 'Địa chỉ email của bạn là gì nhỉ?',
-    type: 'email',
-    skippable: true,
-    errorMessage: {
-      content: 'Hình như địa chỉ email của bạn chưa chính xác',
-    },
+    content:
+      "Xin chào, mình là Bình. Mình có cung cấp dịch vụ lấy dữ liệu từ các website thương mại điện tử như Shopee, Temu, AliExpress, Amazone, hoặc các website chạy trên các nền tảng như Shopify, Sapo, Haravan",
   },
 
   {
-    content:
-      "Xin chào, mình là Bình. Mình có cung cấp dịch vụ lấy dữ liệu từ các website thương mại điện tử như Shopee, Temu, AliExpress, Amazone, hoặc các website chạy trên các nền tảng như Shopify, Sapo, Haravan",
+    content: "Địa chỉ email của bạn là gì nhỉ?",
+    type: "email",
+    skippable: true,
+    errorMessage: {
+      content: "Hình như địa chỉ email của bạn chưa chính xác",
+    },
   },
 
   {

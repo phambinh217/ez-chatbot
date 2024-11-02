@@ -31,6 +31,7 @@
 <script setup>
 import { computed } from "vue";
 import messageTypeProviders from '@/message-type-providers';
+import CommonMessage from "./MessageTemplates/CommonMessage.vue";
 
 const props = defineProps({
   message: {
@@ -48,7 +49,7 @@ const $emit = defineEmits(["select-option"]);
 
 const _message = computed(() => {
   return {
-    component: messageTypeProviders[props.message.type]?.component || "",
+    component: messageTypeProviders[props.message.type]?.component || CommonMessage,
     ...props.message,
   };
 });
