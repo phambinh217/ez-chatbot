@@ -1,4 +1,6 @@
 export default {
+  isQuestion: true,
+
   onValidate({ context, answer }) {
     if (answer.content.includes('@') == false) {
       context.addConversationMessages({

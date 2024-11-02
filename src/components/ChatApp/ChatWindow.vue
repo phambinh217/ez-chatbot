@@ -115,8 +115,19 @@ const currentScriptIndex = computed(() => {
 
 const chatConversationRef = ref();
 
-const isQuestionScript = (script) =>
-  ["question", "email"].includes(script.type);
+const isQuestionScript = (script) => {
+  const scriptType = script.type;
+  const messageProvider = messageTypeProviders[scriptType] || null;
+
+  if (!messageProvider) {
+    return false;
+  }
+
+  /**
+   * !! to force convert to boolean
+   */
+  return !!messageProvider?.isQuestion;
+}
 
 const frequencyNextScriptId = computed(() => {
   let scriptId = null;
