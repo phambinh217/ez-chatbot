@@ -1,6 +1,5 @@
 import { isQuestionScript } from "@/helpers/script";
 
-
 /**
  * Gửi tất cả thông tin lên Google Sheets thông qua API
  * @param {Array} scripts - Mảng đối tượng script cần lưu
