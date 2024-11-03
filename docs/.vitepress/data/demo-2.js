@@ -1,17 +1,17 @@
 export default {
   scripts: [
-    {
-      content: "Địa chỉ email của bạn là gì nhỉ?",
-      type: "email",
-      errorMessage: {
-        content: "Hình như địa chỉ email của bạn chưa chính xác",
-      },
-    },
+    // {
+    //   content: "Địa chỉ email của bạn là gì nhỉ?",
+    //   type: "email",
+    //   errorMessage: {
+    //     content: "Hình như địa chỉ email của bạn chưa chính xác",
+    //   },
+    // },
 
-    {
-      content: "Tên bạn là gì nhỉ",
-      type: "question"
-    },
+    // {
+    //   content: "Tên bạn là gì nhỉ",
+    //   type: "question"
+    // },
 
     {
       content: "Bạn sinh năm bao nhiêu",

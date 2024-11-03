@@ -65,6 +65,7 @@ import "@/assets/chat.css";
 
 import { ref, watch, computed, onMounted } from "vue";
 import { directive as vClickOutside } from "click-outside-vue3";
+import injectPlugins from "@/plugins";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
 import ChatWelcomeMessage from "./ChatApp/ChatWelcomeMessage.vue";
 import ForumOutlineIcon from "@/assets/svgIcons/forum-outline.svg";
@@ -83,15 +84,10 @@ const props = defineProps({
       };
     },
   },
-
-  useWelcomeMessage: {
-    type: Boolean,
-    default: true,
-  },
 });
 
 const $emit = defineEmits(["finished"]);
-const finishedCallback = ref(null);
+const finishedCallback = ref([]);
 const chatWindowRef = ref(null);
 const chatWindowOpen = ref(false);
 const conversationWasStarted = ref(false);
@@ -110,14 +106,14 @@ const showBubble = computed(
 );
 
 const onFinished = (callback) => {
-  finishedCallback.value = callback;
+  finishedCallback.value.push(callback)
 };
 
 const handleFinished = (data) => {
   $emit("finished", data);
 
-  if (typeof finishedCallback.value == "function") {
-    finishedCallback.value(data);
+  for (const callback of finishedCallback.value) {
+    callback(data);
   }
 };
 
@@ -202,6 +198,17 @@ watch(
     immediate: true,
   }
 );
+
+const loadPlugin = () => {
+  injectPlugins({
+    app: {
+      onFinished,
+    },
+
+    options: props.options,
+  })
+}
+onMounted(() => loadPlugin())
 
 onMounted(() =>
   console.log(
