@@ -142,9 +142,15 @@ export default {
         backgroundSize: "contain",
       },
     },
-  },
 
-  translation: {
-    vi: {},
+    plugins: {
+      googleSheet: {
+        //
+      },
+    },
+
+    hooks: {
+      //
+    },
   },
 };

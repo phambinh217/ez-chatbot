@@ -164,9 +164,7 @@ const handleSelectOptionInWelcomeMessage = (payload) => {
   conversationWasStarted.value = true;
 };
 
-const handleClickOutSideChatApp = (event) => {
-  console.log('handleClickOutSideChatApp');
-
+const handleClickOutSideChatApp = () => {
   if (!props.options?.clickOutSideClose) {
     return;
   }
@@ -174,8 +172,6 @@ const handleClickOutSideChatApp = (event) => {
   if (!chatWindowOpen.value) {
     return;
   }
-
-  console.log(event.target.className)
 
   hideChatWindow();
 };

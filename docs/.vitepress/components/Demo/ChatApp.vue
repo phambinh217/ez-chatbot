@@ -1,8 +1,13 @@
 <template>
-  <ChatApp :scripts="demo1.scripts" :options="demo1.options" />
+  <ChatApp :scripts="demo.scripts" :options="demo.options" @finished="handleFinished" />
 </template>
 
 <script setup>
 import ChatApp from "@/components/ChatApp.vue";
-import demo1 from "../../data/demo-1.js";
+import demo from "../../data/demo-2.js";
+
+
+const handleFinished = (data) => {
+  console.log(data);
+}
 </script>

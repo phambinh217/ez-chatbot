@@ -43,7 +43,7 @@ import ChatConversation from "./ChatConversation.vue";
 import ChatMessage from "./ChatMessage.vue";
 import ChatHeader from "./ChatHeader.vue";
 import ChatResetConfirmModal from "./ChatResetConfirmModal.vue";
-import messageTypeProviders from '@/message-type-providers';
+import messageTypeProviders from "@/message-type-providers";
 
 const props = defineProps({
   scripts: {
@@ -86,6 +86,7 @@ const scriptFactory = (script) => ({
   skipText: "Skip",
   longAnswer: false,
   content: "",
+  answer: messageFactory(),
   ...script,
 });
 
@@ -127,7 +128,7 @@ const isQuestionScript = (script) => {
    * !! to force convert to boolean
    */
   return !!messageProvider?.isQuestion;
-}
+};
 
 const frequencyNextScriptId = computed(() => {
   let scriptId = null;
@@ -158,6 +159,7 @@ const addConversationMessage = (data) => {
      */
     if (isQuestionScript(currentScript.value)) {
       currentUserAnswer.value = data;
+      currentScript.value.answer = { ...data };
     } else {
       currentUserAnswer.value = messageFactory();
     }
@@ -259,7 +261,8 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
    * }
    */
   if (typeof nextScriptId == "object") {
-    const answer = currentUserAnswer.value.content?.value || currentUserAnswer.value.content;
+    const answer =
+      currentUserAnswer.value.content?.value || currentUserAnswer.value.content;
     nextScriptId = nextScriptId[answer] || nextScriptId?.__unmatched;
   }
 
