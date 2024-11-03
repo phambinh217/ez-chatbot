@@ -87,7 +87,6 @@ const props = defineProps({
   },
 });
 
-const $emit = defineEmits(["finished", "answered"]);
 const chatWindowRef = ref(null);
 const chatWindowOpen = ref(false);
 const conversationWasStarted = ref(false);
@@ -122,16 +121,12 @@ const onAnswered = (callback) => {
 };
 
 const handleFinished = (data) => {
-  $emit("finished", data);
-
   for (const callback of onFinishedCallback.value) {
     callback(data);
   }
 };
 
 const handleAnswered = (data) => {
-  $emit("answered", data);
-
   for (const callback of onAnsweredCallback.value) {
     callback(data);
   }
@@ -247,13 +242,6 @@ onMounted(() =>
     "background: #222; color: #bada55"
   )
 );
-
-defineExpose({
-  onFinished,
-  toggleChatWindow,
-  showChatWindow,
-  hideChatWindow,
-});
 </script>
 
 <style scoped>
