@@ -242,6 +242,12 @@ onMounted(() =>
     "background: #222; color: #bada55"
   )
 );
+
+defineExpose({
+  showChatWindow,
+  hideChatWindow,
+  toggleChatWindow,
+})
 </script>
 
 <style scoped>

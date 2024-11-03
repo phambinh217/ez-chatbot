@@ -58,9 +58,5 @@ export default {
         sheet: 'default',
       },
     },
-
-    hooks: {
-      //
-    },
   },
 };
