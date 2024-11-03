@@ -62,7 +62,12 @@ const props = defineProps({
   },
 });
 
-const $emit = defineEmits(["finished", "click-close-button"]);
+const $emit = defineEmits([
+  "finished",
+  "click-close-button",
+  "after-reset",
+  "answered",
+]);
 
 const chatWindowStyles = computed(() => {
   return props.options?.styles?.chatWindow;
@@ -147,6 +152,8 @@ const addConversationMessage = (data) => {
     if (isQuestionScript(currentScript.value)) {
       currentUserAnswer.value = data;
       currentScript.value.answer = { ...data };
+
+      $emit("answered", currentScript.value);
     } else {
       currentUserAnswer.value = messageFactory();
     }
@@ -336,6 +343,8 @@ const handleConfirmResetChat = () => {
   currentUserAnswer.value = messageFactory();
 
   runScriptWithDelay();
+
+  $emit("after-reset");
 };
 
 defineExpose({

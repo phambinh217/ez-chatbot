@@ -8,10 +8,11 @@ export default {
     //   },
     // },
 
-    // {
-    //   content: "Tên bạn là gì nhỉ",
-    //   type: "question"
-    // },
+    {
+      type: "question",
+      content: "Tên bạn là gì nhỉ",
+      name: "full_name",
+    },
 
     {
       content: "Bạn sinh năm bao nhiêu",

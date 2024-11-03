@@ -24,7 +24,9 @@
             :options="options"
             :scripts="scripts"
             @finished="handleFinished"
+            @answered="handleAnswered"
             @click-close-button="chatWindowOpen = false"
+            @after-reset="handleAfterResetConversation"
           />
         </div>
       </Transition>
@@ -63,6 +65,7 @@
 import "@/assets/chat.css";
 
 import { ref, watch, computed, onMounted } from "vue";
+import { randomString } from "@/helpers/string";
 import injectPlugins from "@/plugins";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
 import ChatWelcomeMessage from "./ChatApp/ChatWelcomeMessage.vue";
@@ -84,11 +87,14 @@ const props = defineProps({
   },
 });
 
-const $emit = defineEmits(["finished"]);
-const finishedCallback = ref([]);
+const $emit = defineEmits(["finished", "answered"]);
 const chatWindowRef = ref(null);
 const chatWindowOpen = ref(false);
 const conversationWasStarted = ref(false);
+const sessionId = ref(randomString());
+const onFinishedCallback = ref([]);
+const onChangedSessionCallback = ref([]);
+const onAnsweredCallback = ref([]);
 
 /**
  * Only show welcome message if conversation was not started
@@ -104,13 +110,29 @@ const showBubble = computed(
 );
 
 const onFinished = (callback) => {
-  finishedCallback.value.push(callback)
+  onFinishedCallback.value.push(callback);
+};
+
+const onChangedSession = (callback) => {
+  onChangedSessionCallback.value.push(callback);
+};
+
+const onAnswered = (callback) => {
+  onAnsweredCallback.value.push(callback);
 };
 
 const handleFinished = (data) => {
   $emit("finished", data);
 
-  for (const callback of finishedCallback.value) {
+  for (const callback of onFinishedCallback.value) {
+    callback(data);
+  }
+};
+
+const handleAnswered = (data) => {
+  $emit("answered", data);
+
+  for (const callback of onAnsweredCallback.value) {
     callback(data);
   }
 };
@@ -158,16 +180,24 @@ const handleSelectOptionInWelcomeMessage = (payload) => {
   conversationWasStarted.value = true;
 };
 
-const handleClickOutSideChatApp = () => {
-  if (!props.options?.clickOutSideClose) {
-    return;
-  }
+// const handleClickOutSideChatApp = () => {
+//   if (!props.options?.clickOutSideClose) {
+//     return;
+//   }
 
-  if (!chatWindowOpen.value) {
-    return;
-  }
+//   if (!chatWindowOpen.value) {
+//     return;
+//   }
 
-  hideChatWindow();
+//   hideChatWindow();
+// };
+
+const handleAfterResetConversation = () => {
+  sessionId.value = randomString();
+
+  for (const callback of onChangedSessionCallback.value) {
+    callback(sessionId.value);
+  }
 };
 
 const initStyle = () => {
@@ -201,12 +231,15 @@ const loadPlugin = () => {
   injectPlugins({
     app: {
       onFinished,
+      onAnswered,
+      onChangedSession,
+      initSessionId: sessionId.value,
     },
 
     options: props.options,
-  })
-}
-onMounted(() => loadPlugin())
+  });
+};
+onMounted(() => loadPlugin());
 
 onMounted(() =>
   console.log(

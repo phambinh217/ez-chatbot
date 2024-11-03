@@ -1,12 +1,6 @@
 import { isQuestionScript } from "@/helpers/script";
 
-/**
- * Gửi tất cả thông tin lên Google Sheets thông qua API
- * @param {Array} scripts - Mảng đối tượng script cần lưu
- */
-async function saveScriptsToGoogleSheet(scripts, googleSheetConfig) {
-  const id = 1;
-
+async function saveScriptsToGoogleSheet(id, scripts, googleSheetConfig) {
   const data = { id };
   const where = { id };
 
@@ -22,7 +16,7 @@ async function saveScriptsToGoogleSheet(scripts, googleSheetConfig) {
 
   const payload = {
     command: "UPDATE_OR_CREATE_COMMAND",
-    sheet_title: googleSheetConfig.sheet || 'default',
+    sheet_title: googleSheetConfig.sheet || "default",
     data,
     where,
   };
@@ -30,20 +24,12 @@ async function saveScriptsToGoogleSheet(scripts, googleSheetConfig) {
   try {
     const response = await fetch(googleSheetConfig.url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(payload),
     });
-
-    console.log("Response:", response);
 
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
     }
-
-    const responseData = await response.json();
-    console.log("Data saved:", responseData);
   } catch (error) {
     console.error("Error saving data:", error);
   }
@@ -52,8 +38,17 @@ async function saveScriptsToGoogleSheet(scripts, googleSheetConfig) {
 export default function ({ app, options }) {
   const googleSheetConfig = options.plugins.googleSheet;
 
-  app.onFinished((data) => {
-    const scripts = data.scripts;
-    saveScriptsToGoogleSheet(scripts, googleSheetConfig);
+  let sessionId = app.initSessionId;
+
+  app.onChangedSession((newSessionId) => {
+    sessionId = newSessionId;
+  });
+
+  app.onFinished(({ scripts }) => {
+    saveScriptsToGoogleSheet(sessionId, scripts, googleSheetConfig);
+  });
+
+  app.onAnswered((script) => {
+    saveScriptsToGoogleSheet(sessionId, [script], googleSheetConfig);
   });
 }
