@@ -1,13 +1,11 @@
 import { isQuestionScript } from "@/helpers/script";
 
-const GOOGLE_SHEET_API_URL =
-  "https://script.google.com/macros/s/AKfycbxPp0oSxDWLM_jDn85fGc4dEAe0AtgaeYNZJixO49LJfBMSKlDicu2zm2qgzz49-UM9/exec";
 
 /**
  * Gửi tất cả thông tin lên Google Sheets thông qua API
  * @param {Array} scripts - Mảng đối tượng script cần lưu
  */
-async function saveScriptsToGoogleSheet(scripts) {
+async function saveScriptsToGoogleSheet(scripts, googleSheetConfig) {
   const id = 1;
 
   const data = { id };
@@ -25,19 +23,21 @@ async function saveScriptsToGoogleSheet(scripts) {
 
   const payload = {
     command: "UPDATE_OR_CREATE_COMMAND",
-    sheet_title: "default",
+    sheet_title: googleSheetConfig.sheet || 'default',
     data,
     where,
   };
 
   try {
-    const response = await fetch(GOOGLE_SHEET_API_URL, {
+    const response = await fetch(googleSheetConfig.url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
     });
+
+    console.log("Response:", response);
 
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
@@ -50,9 +50,11 @@ async function saveScriptsToGoogleSheet(scripts) {
   }
 }
 
-export default function ({ app }) {
+export default function ({ app, options }) {
+  const googleSheetConfig = options.plugins.googleSheet;
+
   app.onFinished((data) => {
     const scripts = data.scripts;
-    saveScriptsToGoogleSheet(scripts);
+    saveScriptsToGoogleSheet(scripts, googleSheetConfig);
   });
 }

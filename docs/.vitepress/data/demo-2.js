@@ -53,7 +53,7 @@ export default {
 
     plugins: {
       googleSheet: {
-        //
+        url: "https://script.google.com/macros/s/AKfycbxPp0oSxDWLM_jDn85fGc4dEAe0AtgaeYNZJixO49LJfBMSKlDicu2zm2qgzz49-UM9/exec",
       },
     },
 
