@@ -37,6 +37,12 @@ export default defineConfig({
         globals: {
           vue: "Vue",
         },
+
+        // Đổi tên file CSS thành form-chat.css
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === "style.css") return "form-chat.css";
+          return assetInfo.name;
+        },
       },
     },
   },
