@@ -15,19 +15,14 @@ export default {
 
     {
       content: "Bạn sinh năm bao nhiêu",
+      name: "age",
       type: "select",
-      options: [
-        1996,
-        1997,
-        1998,
-        1999,
-        2000,
-      ]
+      options: [1996, 1997, 1998, 1999, 2000],
     },
 
     {
       content: "Cảm ơn bạn đã cung cấp thông tin",
-    }
+    },
   ],
 
   options: {
