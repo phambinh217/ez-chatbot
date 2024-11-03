@@ -38,6 +38,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { randomString } from "@/helpers/string";
+import { isQuestionScript } from "@/helpers/script";
 import ChatComposer from "./ChatComposer.vue";
 import ChatConversation from "./ChatConversation.vue";
 import ChatMessage from "./ChatMessage.vue";
@@ -115,20 +116,6 @@ const currentScriptIndex = computed(() => {
 });
 
 const chatConversationRef = ref();
-
-const isQuestionScript = (script) => {
-  const scriptType = script.type;
-  const messageProvider = messageTypeProviders[scriptType] || null;
-
-  if (!messageProvider) {
-    return false;
-  }
-
-  /**
-   * !! to force convert to boolean
-   */
-  return !!messageProvider?.isQuestion;
-};
 
 const frequencyNextScriptId = computed(() => {
   let scriptId = null;
