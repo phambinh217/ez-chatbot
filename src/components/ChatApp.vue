@@ -5,7 +5,6 @@
       '--fc-dark-theme': options?.styles?.theme === 'dark',
       '--fc-light-theme': options?.styles?.theme === 'light',
     }"
-    v-click-outside="handleClickOutSideChatApp"
   >
     <div class="--fc-application-inner">
       <Transition
@@ -64,7 +63,6 @@
 import "@/assets/chat.css";
 
 import { ref, watch, computed, onMounted } from "vue";
-import { directive as vClickOutside } from "click-outside-vue3";
 import injectPlugins from "@/plugins";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
 import ChatWelcomeMessage from "./ChatApp/ChatWelcomeMessage.vue";
