@@ -12,20 +12,16 @@ const commands = [];
  * @param {Object} where, the condition to find an existing row, eg: {id: 1}
  */
 const UPDATE_OR_CREATE_COMMAND = ({ sheet, data, where }) => {
-  // Kiểm tra nếu sheet trống, thêm tiêu đề từ `data`
   const lastRow = sheet.getLastRow();
   const lastColumn = sheet.getLastColumn();
 
   if (lastRow === 0 && lastColumn === 0) {
-    // Lấy danh sách tiêu đề từ khóa của `data`
     const headers = Object.keys(data);
-    sheet.appendRow(headers); // Thêm tiêu đề vào hàng đầu tiên
+    sheet.appendRow(headers);
   }
 
-  // Lấy tiêu đề sau khi đã khởi tạo (nếu cần)
   const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
 
-  // Gọi hàm helper để kiểm tra và thêm cột mới nếu cần
   addNewColumnsIfNeeded(sheet, headers, data);
 
   const columnIndex = headers.map(header => header.toLowerCase());
@@ -39,9 +35,7 @@ const UPDATE_OR_CREATE_COMMAND = ({ sheet, data, where }) => {
 
   const lastRowWithData = sheet.getLastRow();
 
-  // Kiểm tra nếu chỉ có hàng tiêu đề
   if (lastRowWithData <= 1) {
-    // Thêm mới hàng vì không có dữ liệu nào để cập nhật
     const rowData = arrCombine(headers, data);
     sheet.appendRow(rowData);
     return responseJson({
@@ -120,25 +114,6 @@ const arrCombine = (headers, data) => {
   for (let i = 0; i < headers.length; i++) {
     const column = headers[i].toLowerCase();
     formattedData.push(data[column]);
-  }
-
-  return formattedData;
-};
-
-/**
- * Create an object from headers and data
- * The key will be taken from headers, and the value from data
- *
- * @param {Array} headers
- * @param {Array} data
- * @returns {Object}
- */
-const objectCombine = (headers, data) => {
-  const formattedData = {};
-
-  for (let i = 0; i < headers.length; i++) {
-    const column = headers[i].toLowerCase();
-    formattedData[column] = data[i];
   }
 
   return formattedData;

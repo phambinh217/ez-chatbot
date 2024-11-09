@@ -65,7 +65,7 @@ export default {
         /**
          * https://docs.google.com/spreadsheets/d/1Xb4U-rwsOaqVWrhZdodzadDk4_tafdxlBBpNObRUlX4/edit?gid=0#gid=0
          */
-        url: "https://script.google.com/macros/s/AKfycbxPp0oSxDWLM_jDn85fGc4dEAe0AtgaeYNZJixO49LJfBMSKlDicu2zm2qgzz49-UM9/exec",
+        url: "https://script.google.com/macros/s/AKfycbxqYganu344Hh0Gxo2arKRrDiQ3gBoOhYhgUMqeOic959oExL4j1X3V2dndBtz7Pkiz/exec",
         sheet: "default",
       },
     },

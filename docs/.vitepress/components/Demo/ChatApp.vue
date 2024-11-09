@@ -4,5 +4,5 @@
 
 <script setup>
 import ChatApp from "@/components/ChatApp.vue";
-import demo from "../../data/demo-3.js";
+import demo from "../../data/demo-2.js";
 </script>
