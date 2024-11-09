@@ -1,9 +1,27 @@
 import { isQuestionScript } from "@/helpers/script";
 
-async function saveScriptsToGoogleSheet(id, scripts, googleSheetConfig) {
+async function saveScriptsToGoogleSheet(
+  id,
+  scripts,
+  metadata,
+  googleSheetConfig
+) {
   const data = { id };
   const where = { id };
 
+  /**
+   * Add metadata to the data object
+   */
+  if (metadata && metadata?.length) {
+    for (let i = 0; i < metadata.length; i++) {
+      const meta = metadata[i];
+      data[meta.name] = meta.value;
+    }
+  }
+
+  /**
+   * Add answer to the data object
+   */
   for (let i = 0; i < scripts.length; i++) {
     const script = scripts[i];
 
@@ -11,7 +29,7 @@ async function saveScriptsToGoogleSheet(id, scripts, googleSheetConfig) {
       continue;
     }
 
-    data[script.name] = script.answer.content;
+    data[script.name] = script.answer.content?.value || script.answer.content;
   }
 
   const payload = {
@@ -35,7 +53,7 @@ async function saveScriptsToGoogleSheet(id, scripts, googleSheetConfig) {
   }
 }
 
-export default function ({ app, options }) {
+export default function ({ app, options, metadata }) {
   const googleSheetConfig = options.plugins.googleSheet;
 
   let sessionId = app.initSessionId;
@@ -45,10 +63,10 @@ export default function ({ app, options }) {
   });
 
   app.onFinished(({ scripts }) => {
-    saveScriptsToGoogleSheet(sessionId, scripts, googleSheetConfig);
+    saveScriptsToGoogleSheet(sessionId, scripts, metadata, googleSheetConfig);
   });
 
   app.onAnswered((script) => {
-    saveScriptsToGoogleSheet(sessionId, [script], googleSheetConfig);
+    saveScriptsToGoogleSheet(sessionId, [script], metadata, googleSheetConfig);
   });
 }

@@ -1,5 +1,5 @@
 <template>
-  <ChatApp :scripts="demo.scripts" :options="demo.options" />
+  <ChatApp :scripts="demo.scripts" :options="demo.options" :metadata="demo.metadata" />
 </template>
 
 <script setup>

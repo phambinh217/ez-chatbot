@@ -27,6 +27,13 @@ export default {
     },
   ],
 
+  metadata: [
+    {
+      name: 'product_id',
+      value: 1,
+    },
+  ],
+
   options: {
     hostUser: {
       name: "Phạm Bình",

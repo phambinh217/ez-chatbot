@@ -77,6 +77,11 @@ const props = defineProps({
     default: () => [],
   },
 
+  metadata: {
+    type: Array,
+    default: () => [],
+  },
+
   options: {
     type: Object,
     default: () => {
@@ -231,6 +236,7 @@ const loadPlugin = () => {
       initSessionId: sessionId.value,
     },
 
+    metadata: props.metadata,
     options: props.options,
   });
 };
