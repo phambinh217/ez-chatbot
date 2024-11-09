@@ -91,6 +91,7 @@ watch(
 
 .--fc-composer-submit-button {
   @apply --fc-h-[40px] --fc-w-[40px] --fc-rounded-full --fc-bg-[var(--fc-primary-color)] --fc-text-white --fc-flex --fc-items-center --fc-justify-center;
+  @apply --fc-border-0;
 }
 
 .--fc-composer-submit-button .--fc-icon {

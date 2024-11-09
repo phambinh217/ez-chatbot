@@ -63,6 +63,7 @@ const $emit = defineEmits(["click-reset-button", 'click-close-button']);
 
 .--fc-header-buttons button {
   @apply --fc-shadow --fc-h-4 --fc-w-4 --fc-rounded-full --fc-flex --fc-items-center --fc-justify-center hover:--fc-text-gray-800 hover:--fc-fill-gray-800;
+  @apply --fc-border-0;
 }
 
 .--fc-header-buttons button .--fc-icon {

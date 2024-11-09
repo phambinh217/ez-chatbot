@@ -22,11 +22,6 @@
     @apply --fc-bg-gray-200;
 }
 
-/**
- * ------------------------------
- * Chat
- * ------------------------------
- */
 :root {
     --fc-primary-color: #3b82f6;
     --fc-primary-light-color: #60a5fa;
@@ -35,13 +30,29 @@
 }
 
 .--fc-application {
-    @apply --fc-text-base --fc-font-sans --fc-text-gray-700;;
+    @apply --fc-text-base --fc-font-sans --fc-text-gray-700;
+    ;
+}
+
+/**
+ * ------------------------------
+ * Reset css
+ * ------------------------------
+ */
+.--fc-application * {
+    @apply --fc-box-border;
 }
 
 .--fc-application button {
     @apply --fc-cursor-pointer;
+    @apply !--fc-shadow-none !--fc-outline-none;
 }
 
+/**
+ * ------------------------------
+ * Main css
+ * ------------------------------
+ */
 .--fc-application.--fc-dark-theme .--fc-window {
     @apply !--fc-bg-gray-700;
 }

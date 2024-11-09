@@ -30,7 +30,6 @@
           />
         </div>
       </Transition>
-
       <Transition
         enter-active-class="--fc-transition --fc-duration-150 --fc-ease-in-out"
         enter-from-class="--fc-opacity-0 --fc-translate-y-4"
@@ -40,7 +39,7 @@
         leave-to-class="--fc-opacity-0 --fc-translate-y-4"
       >
         <div
-          v-show="showWelcomeMessage"
+          v-if="showWelcomeMessage"
           class="--fc-absolute --fc-bottom-[100%] --fc-w-[350px]"
         >
           <ChatWelcomeMessage
@@ -92,11 +91,15 @@ const props = defineProps({
   },
 });
 
-const { scripts: _scripts, options: _options, metadata: _metadata } = toRefs(props);
+const {
+  scripts: _scripts,
+  options: _options,
+  metadata: _metadata,
+} = toRefs(props);
 
-const setScript = (value) => _scripts.value = value
-const setOptions = (value) => _options.value = value
-const setMetadata = (value) => _metadata.value = value
+const setScript = (value) => (_scripts.value = value);
+const setOptions = (value) => (_options.value = value);
+const setMetadata = (value) => (_metadata.value = value);
 
 const chatWindowRef = ref(null);
 const chatWindowOpen = ref(false);
@@ -106,14 +109,18 @@ const onFinishedCallback = ref([]);
 const onChangedSessionCallback = ref([]);
 const onAnsweredCallback = ref([]);
 
+const welcomeMessage = computed(() => props.scripts[0]);
+
 /**
  * Only show welcome message if conversation was not started
  */
-const showWelcomeMessage = computed(
-  () => _options.value.welcomeMessage && conversationWasStarted.value == false
-);
-
-const welcomeMessage = computed(() => props.scripts[0]);
+const showWelcomeMessage = computed(() => {
+  return !!(
+    welcomeMessage.value && // Has welcome message
+    _options.value?.welcomeMessage && // Show welcome message in options
+    conversationWasStarted.value == false // Conversation was not started
+  );
+});
 
 const showBubble = computed(
   () => _options.value?.embedded?.type != "background"
@@ -225,12 +232,9 @@ const initStyle = () => {
   }
 };
 
-watch(_options,
-  () => initStyle(),
-  {
-    immediate: true,
-  }
-);
+watch(_options, () => initStyle(), {
+  immediate: true,
+});
 
 const loadPlugin = () => {
   injectPlugins({
@@ -261,7 +265,7 @@ defineExpose({
   setScript,
   setOptions,
   setMetadata,
-})
+});
 </script>
 
 <style scoped>

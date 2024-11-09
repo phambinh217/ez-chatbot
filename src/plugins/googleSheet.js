@@ -54,7 +54,11 @@ async function saveScriptsToGoogleSheet(
 }
 
 export default function ({ app, options, metadata }) {
-  const googleSheetConfig = options.plugins.googleSheet;
+  const googleSheetConfig = options.plugins?.googleSheet;
+
+  if (!googleSheetConfig) {
+    return;
+  }
 
   let sessionId = app.initSessionId;
 

@@ -1,8 +1,8 @@
 <template>
   <div
     :class="{
-      '--fc-message-agent-user': message.userRole == 'agent',
-      '--fc-message-host-user': message.userRole == 'host',
+      '--fc-message-agent-user': _message.userRole == 'agent',
+      '--fc-message-host-user': _message.userRole == 'host',
     }"
   >
     <div class="--fc-message-container">
@@ -81,7 +81,7 @@ const handleSelectOptionInMessage = (payload) => {
 }
 
 .--fc-message-content-container {
-  @apply --fc-p-3 --fc-rounded-2xl --fc-gap-3 --fc-inline-block;
+  @apply --fc-px-3 --fc-py-2 --fc-rounded-2xl --fc-gap-3 --fc-inline-block;
   @apply --fc-bg-[var(--fc-primary-light-color)];
 
 }
