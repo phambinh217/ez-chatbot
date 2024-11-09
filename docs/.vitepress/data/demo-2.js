@@ -1,24 +1,25 @@
 export default {
   scripts: [
-    // {
-    //   content: "Địa chỉ email của bạn là gì nhỉ?",
-    //   type: "email",
-    //   errorMessage: {
-    //     content: "Hình như địa chỉ email của bạn chưa chính xác",
-    //   },
-    // },
-
     {
+      name: "full_name",
       type: "question",
       content: "Tên bạn là gì nhỉ",
-      name: "full_name",
     },
 
     {
-      content: "Bạn sinh năm bao nhiêu",
       name: "age",
+      content: "Bạn sinh năm bao nhiêu",
       type: "select",
       options: [1996, 1997, 1998, 1999, 2000],
+    },
+
+    {
+      name: "email",
+      content: "Địa chỉ email của bạn là gì nhỉ?",
+      type: "email",
+      errorMessage: {
+        content: "Hình như địa chỉ email của bạn chưa chính xác",
+      },
     },
 
     {
@@ -55,7 +56,7 @@ export default {
     plugins: {
       googleSheet: {
         url: "https://script.google.com/macros/s/AKfycbxPp0oSxDWLM_jDn85fGc4dEAe0AtgaeYNZJixO49LJfBMSKlDicu2zm2qgzz49-UM9/exec",
-        sheet: 'default',
+        sheet: "default",
       },
     },
   },

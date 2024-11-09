@@ -83,6 +83,7 @@ const messageFactory = () => ({
   type: "text",
   content: "",
   options: null,
+  scriptId: null,
 });
 
 const scriptFactory = (script) => ({
@@ -180,14 +181,13 @@ const runScript = (scriptId) => {
     content: script.content,
     options: script.options,
     type: script.type,
+    scriptId: script.id,
   });
 
   runNextScriptIfHas();
 };
 
-const runScriptWithDelay = (scriptId) => {
-  setTimeout(() => runScript(scriptId), 300);
-};
+const runScriptWithDelay = (scriptId) => setTimeout(() => runScript(scriptId), 300);
 
 const startConversationWithDelay = () => runScriptWithDelay(null);
 
@@ -309,10 +309,24 @@ const handleUserAddNewChatMessage = async () => {
   await runNextScriptIfHas();
 };
 
-const handleSelectOptionInMessage = async ({ option }) => {
+const handleSelectOptionInMessage = async (payload) => {
+  const scriptId = payload.message.scriptId;
+
+  /**
+   * After user select option
+   * We set current script is the script that user select option
+   */
+  if (scriptId != currentScript.value.id) {
+    const script = scripts.value.find((s) => s.id == scriptId);
+
+    if (script) {
+      currentScript.value = script;
+    }
+  }
+
   addConversationMessage({
     userRole: "agent",
-    content: option,
+    content: payload.option,
     type: "text",
   });
 
