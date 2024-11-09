@@ -1,12 +1,12 @@
 <template>
   <div
     :class="{
-      '--fc-message-agent-user': message.position == 'right',
-      '--fc-message-host-user': message.position == 'left',
+      '--fc-message-agent-user': message.userRole == 'agent',
+      '--fc-message-host-user': message.userRole == 'host',
     }"
   >
     <div class="--fc-message-container">
-      <div v-if="_message.position == 'left'" class="--fc-message-user">
+      <div v-if="_message.userRole == 'host'" class="--fc-message-user">
         <div class="--fc-message-avatar">
           <img
             v-if="options?.hostUser?.avatarUrl"

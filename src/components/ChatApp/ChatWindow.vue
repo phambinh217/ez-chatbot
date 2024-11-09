@@ -79,7 +79,7 @@ const chatResetConfirmModal = ref({
 
 const messageFactory = () => ({
   id: null,
-  position: "left",
+  userRole: "host",
   type: "text",
   content: "",
   options: null,
@@ -142,7 +142,7 @@ const addConversationMessage = (data) => {
    */
   setTimeout(() => chatConversationRef.value.scrollToBottom(), 100);
 
-  if (data.position == "left") {
+  if (data.userRole == "host") {
     currentUserAnswer.value = messageFactory();
   } else {
     /**
@@ -176,7 +176,7 @@ const runScript = (scriptId) => {
   currentScript.value = script;
 
   addConversationMessage({
-    position: "left",
+    userRole: "host",
     content: script.content,
     options: script.options,
     type: script.type,
@@ -299,7 +299,7 @@ const handleUserAddNewChatMessage = async () => {
   }
 
   addConversationMessage({
-    position: "right",
+    userRole: "agent",
     content: userChatMessage.value,
     type: "text",
   });
@@ -311,7 +311,7 @@ const handleUserAddNewChatMessage = async () => {
 
 const handleSelectOptionInMessage = async ({ option }) => {
   addConversationMessage({
-    position: "right",
+    userRole: "agent",
     content: option,
     type: "text",
   });
