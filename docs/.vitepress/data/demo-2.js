@@ -55,6 +55,9 @@ export default {
 
     plugins: {
       googleSheet: {
+        /**
+         * https://docs.google.com/spreadsheets/d/1Xb4U-rwsOaqVWrhZdodzadDk4_tafdxlBBpNObRUlX4/edit?gid=0#gid=0
+         */
         url: "https://script.google.com/macros/s/AKfycbxPp0oSxDWLM_jDn85fGc4dEAe0AtgaeYNZJixO49LJfBMSKlDicu2zm2qgzz49-UM9/exec",
         sheet: "default",
       },

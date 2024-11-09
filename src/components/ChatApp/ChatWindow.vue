@@ -333,11 +333,11 @@ const handleSelectOptionInMessage = async (payload) => {
   await runNextScriptIfHas();
 };
 
-const triggerSelectOptionInMessage = handleSelectOptionInMessage;
 
 const handleClickSkipButton = async () => {
   await runNextScriptIfHas(false);
 };
+
 
 const handleClickResetButton = () => {
   chatResetConfirmModal.value.open = true;
@@ -363,10 +363,12 @@ const handleConfirmResetChat = () => {
 
 defineExpose({
   addConversationMessage,
-  triggerSelectOptionInMessage,
   startConversationWithDelay,
   startConversation,
+  triggerSelectOptionInMessage: handleSelectOptionInMessage,
+  triggerClickSkipButton: handleClickSkipButton,
 });
+
 </script>
 
 <style scoped>
