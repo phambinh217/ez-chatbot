@@ -49,15 +49,15 @@ export default {
     welcomeMessage: true,
 
     styles: {
-      theme: "dark",
+      // theme: "dark",
       primaryColor: "#06b6d4",
       primaryLightColor: "#a5f3fc",
 
-      chatWindow: {
-        backgroundImage:
-          "url(https://wallpapers.com/images/hd/whatsapp-chat-background-fb34cc4b2hg9lmix.jpg)",
-        backgroundSize: "contain",
-      },
+      // chatWindow: {
+      //   backgroundImage:
+      //     "url(https://wallpapers.com/images/hd/whatsapp-chat-background-fb34cc4b2hg9lmix.jpg)",
+      //   backgroundSize: "contain",
+      // },
     },
 
     plugins: {

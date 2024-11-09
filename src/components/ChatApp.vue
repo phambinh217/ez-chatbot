@@ -44,6 +44,7 @@
         >
           <ChatWelcomeMessage
             :message="welcomeMessage"
+            :options="_options"
             @select-option="handleSelectOptionInWelcomeMessage"
           />
         </div>
@@ -65,6 +66,7 @@ import "@/assets/chat.css";
 
 import { ref, watch, computed, onMounted, toRefs } from "vue";
 import { randomString } from "@/helpers/string";
+import { messageFactory } from "@/helpers/factory";
 import injectPlugins from "@/plugins";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
 import ChatWelcomeMessage from "./ChatApp/ChatWelcomeMessage.vue";
@@ -109,7 +111,17 @@ const onFinishedCallback = ref([]);
 const onChangedSessionCallback = ref([]);
 const onAnsweredCallback = ref([]);
 
-const welcomeMessage = computed(() => props.scripts[0]);
+const welcomeMessage = computed(() => {
+  let message = props.scripts[0]
+
+  if (message) {
+    message = messageFactory(message);
+  }
+
+  console.log(message)
+
+  return message;
+});
 
 /**
  * Only show welcome message if conversation was not started

@@ -3,6 +3,7 @@
     :class="{
       '--fc-message-agent-user': _message.userRole == 'agent',
       '--fc-message-host-user': _message.userRole == 'host',
+      '--fc-message-shadow': shadow,
     }"
   >
     <div class="--fc-message-container">
@@ -30,7 +31,7 @@
 
 <script setup>
 import { computed } from "vue";
-import messageTypeProviders from '@/message-type-providers';
+import messageTypeProviders from "@/message-type-providers";
 import CommonMessage from "./MessageTemplates/CommonMessage.vue";
 
 const props = defineProps({
@@ -43,13 +44,19 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+
+  shadow: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const $emit = defineEmits(["select-option"]);
 
 const _message = computed(() => {
   return {
-    component: messageTypeProviders[props.message.type]?.component || CommonMessage,
+    component:
+      messageTypeProviders[props.message.type]?.component || CommonMessage,
     ...props.message,
   };
 });
@@ -83,10 +90,14 @@ const handleSelectOptionInMessage = (payload) => {
 .--fc-message-content-container {
   @apply --fc-px-3 --fc-py-2 --fc-rounded-2xl --fc-gap-3 --fc-inline-block;
   @apply --fc-bg-[var(--fc-primary-light-color)];
-
 }
 
 .--fc-message-agent-user .--fc-message-content-container {
   @apply --fc-bg-gray-200;
+}
+
+.--fc-message-shadow .--fc-message-avatar,
+.--fc-message-shadow .--fc-message-content-container {
+  @apply --fc-shadow-2xl;
 }
 </style>

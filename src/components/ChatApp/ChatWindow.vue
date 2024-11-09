@@ -37,8 +37,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { randomString } from "@/helpers/string";
 import { isQuestionScript } from "@/helpers/script";
+import { messageFactory, scriptFactory } from "@/helpers/factory";
 import ChatComposer from "./ChatComposer.vue";
 import ChatConversation from "./ChatConversation.vue";
 import ChatMessage from "./ChatMessage.vue";
@@ -75,26 +75,6 @@ const chatWindowStyles = computed(() => {
 
 const chatResetConfirmModal = ref({
   open: false,
-});
-
-const messageFactory = () => ({
-  id: null,
-  userRole: "host",
-  type: "text",
-  content: "",
-  options: null,
-  scriptId: null,
-});
-
-const scriptFactory = (script) => ({
-  id: randomString(),
-  type: "text",
-  skippable: false,
-  skipText: "Skip",
-  longAnswer: false,
-  content: "",
-  answer: messageFactory(),
-  ...script,
 });
 
 const scripts = computed(() => props.scripts.map(scriptFactory));
