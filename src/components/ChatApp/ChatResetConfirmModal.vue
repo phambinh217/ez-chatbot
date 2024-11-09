@@ -38,13 +38,15 @@ const handleClickNoButton = () => {
 </script>
 
 <style setup>
-.--fc-default-button {
+.--fc-modal-actions button {
   @apply --fc-px-3 --fc-py-1 --fc-text-[var(--fc-primary-color)] --fc-rounded-full;
+}
+
+.--fc-default-button {
   @apply --fc-border --fc-border-solid --fc-border-[var(--fc-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
 }
 
 .--fc-negative-button {
-  @apply --fc-px-3 --fc-py-1 --fc-text-[var(--fc-primary-color)] --fc-rounded-full;
   @apply --fc-border --fc-border-solid --fc-border-[var(--fc-primary-color)] --fc-bg-white --fc-shadow --fc-text-xs;
 }
 

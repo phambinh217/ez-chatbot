@@ -38,13 +38,6 @@
     @apply --fc-text-base --fc-font-sans --fc-text-gray-700;;
 }
 
-.--fc-application input,
-.--fc-application button,
-.--fc-application textarea {
-    all: unset;
-    padding-block: 0 !important;
-}
-
 .--fc-application button {
     @apply --fc-cursor-pointer;
 }
