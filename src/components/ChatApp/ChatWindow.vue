@@ -366,17 +366,19 @@ const handleClickCloseButton = () => {
   $emit("click-close-button");
 };
 
-const handleConfirmResetChat = () => {
-  chatResetConfirmModal.value.open = false;
-
+const resetConversation = () => {
   conversationMessages.value = [];
   userChatMessage.value = "";
   currentScript.value = scriptFactory();
   latestUserMessage.value = messageFactory();
   currentUserAnswer.value = messageFactory();
+}
 
+const handleConfirmResetChat = () => {
+  chatResetConfirmModal.value.open = false;
+
+  resetConversation();
   runScriptWithDelay();
-
   $emit("after-reset");
 };
 
@@ -384,6 +386,7 @@ defineExpose({
   addConversationMessage,
   startConversationWithDelay,
   startConversation,
+  resetConversation,
   triggerSelectOptionInMessage: handleSelectOptionInMessage,
   triggerClickSkipButton: handleClickSkipButton,
 });

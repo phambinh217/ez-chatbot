@@ -2,8 +2,8 @@
   <div
     class="--fc-application --fc-formchat-dot-net"
     :class="{
-      '--fc-dark-theme': options?.styles?.theme === 'dark',
-      '--fc-light-theme': options?.styles?.theme === 'light',
+      '--fc-dark-theme': _options?.styles?.theme === 'dark',
+      '--fc-light-theme': _options?.styles?.theme === 'light',
     }"
   >
     <div class="--fc-application-inner">
@@ -21,8 +21,8 @@
         >
           <ChatWindow
             ref="chatWindowRef"
-            :options="options"
-            :scripts="scripts"
+            :options="_options"
+            :scripts="_scripts"
             @finished="handleFinished"
             @answered="handleAnswered"
             @click-close-button="chatWindowOpen = false"
@@ -64,7 +64,7 @@
 <script setup>
 import "@/assets/chat.css";
 
-import { ref, watch, computed, onMounted } from "vue";
+import { ref, watch, computed, onMounted, toRefs } from "vue";
 import { randomString } from "@/helpers/string";
 import injectPlugins from "@/plugins";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
@@ -92,6 +92,12 @@ const props = defineProps({
   },
 });
 
+const { scripts: _scripts, options: _options, metadata: _metadata } = toRefs(props);
+
+const setScript = (value) => _scripts.value = value
+const setOptions = (value) => _options.value = value
+const setMetadata = (value) => _metadata.value = value
+
 const chatWindowRef = ref(null);
 const chatWindowOpen = ref(false);
 const conversationWasStarted = ref(false);
@@ -104,13 +110,13 @@ const onAnsweredCallback = ref([]);
  * Only show welcome message if conversation was not started
  */
 const showWelcomeMessage = computed(
-  () => props.options.welcomeMessage && conversationWasStarted.value == false
+  () => _options.value.welcomeMessage && conversationWasStarted.value == false
 );
 
 const welcomeMessage = computed(() => props.scripts[0]);
 
 const showBubble = computed(
-  () => props.options?.embedded?.type != "background"
+  () => _options.value?.embedded?.type != "background"
 );
 
 const onFinished = (callback) => {
@@ -181,7 +187,7 @@ const handleSelectOptionInWelcomeMessage = (payload) => {
 };
 
 // const handleClickOutSideChatApp = () => {
-//   if (!props.options?.clickOutSideClose) {
+//   if (!_options.value?.clickOutSideClose) {
 //     return;
 //   }
 
@@ -207,8 +213,8 @@ const initStyle = () => {
 
   const rootEl = document.querySelector(":root");
 
-  const primaryColor = props.options?.styles?.primaryColor;
-  const primaryLightColor = props.options?.styles?.primaryLightColor;
+  const primaryColor = _options.value?.styles?.primaryColor;
+  const primaryLightColor = _options.value?.styles?.primaryLightColor;
 
   if (primaryColor) {
     rootEl?.style.setProperty("--fc-primary-color", primaryColor);
@@ -219,8 +225,7 @@ const initStyle = () => {
   }
 };
 
-watch(
-  () => props.options,
+watch(_options,
   () => initStyle(),
   {
     immediate: true,
@@ -236,8 +241,8 @@ const loadPlugin = () => {
       initSessionId: sessionId.value,
     },
 
-    metadata: props.metadata,
-    options: props.options,
+    metadata: _metadata.value,
+    options: _options.value,
   });
 };
 onMounted(() => loadPlugin());
@@ -253,6 +258,9 @@ defineExpose({
   showChatWindow,
   hideChatWindow,
   toggleChatWindow,
+  setScript,
+  setOptions,
+  setMetadata,
 })
 </script>
 
