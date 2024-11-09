@@ -5502,7 +5502,7 @@ const ff = { render: af }, dt = (e, t) => {
       ])
     ]));
   }
-}, gf = /* @__PURE__ */ dt(hf, [["__scopeId", "data-v-c689b31b"]]), mf = {
+}, gf = /* @__PURE__ */ dt(hf, [["__scopeId", "data-v-56d088a3"]]), mf = {
   __name: "ChatConversation",
   setup(e, { expose: t }) {
     const n = be(), s = () => {
@@ -5618,7 +5618,7 @@ const ff = { render: af }, dt = (e, t) => {
       ], 2);
     };
   }
-}, Ti = /* @__PURE__ */ dt(Mf, [["__scopeId", "data-v-685c3cb6"]]), Af = {
+}, Ti = /* @__PURE__ */ dt(Mf, [["__scopeId", "data-v-b564f03f"]]), Af = {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
 };
@@ -5677,7 +5677,7 @@ const Ff = { render: Nf }, Df = { class: "--fc-header-container" }, kf = { class
       ]);
     };
   }
-}, Wf = /* @__PURE__ */ dt(Uf, [["__scopeId", "data-v-bee5c36b"]]), Kf = {
+}, Wf = /* @__PURE__ */ dt(Uf, [["__scopeId", "data-v-a55ac03f"]]), Kf = {
   key: 0,
   class: "--fc-modal-backdrop"
 }, qf = {
