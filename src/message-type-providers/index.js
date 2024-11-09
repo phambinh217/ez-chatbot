@@ -7,5 +7,5 @@ export default {
   text: textTypeProvider,
   email: emailTypeProvider,
   question: questionTypeProvider,
-  select: selectTypeProvider
+  select: selectTypeProvider,
 }

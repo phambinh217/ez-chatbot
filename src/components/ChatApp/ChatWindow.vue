@@ -135,27 +135,46 @@ const frequencyNextScriptId = computed(() => {
   return scriptId;
 });
 
-const addConversationMessage = (data) => {
-  conversationMessages.value.push(data);
+const addConversationMessage = (message) => {
+  conversationMessages.value.push(message);
 
   /**
    * Scroll to bottom after 100ms adding new message
    */
   setTimeout(() => chatConversationRef.value.scrollToBottom(), 100);
 
-  if (data.userRole == "host") {
+  /**
+   * If message is belong to host user
+   * We will reset current user answer
+   *
+   * Because maybe host user want to ask another question
+   */
+  if (message.userRole == "host") {
     currentUserAnswer.value = messageFactory();
-  } else {
+  }
+
+  /**
+   * Else
+   * That mean this message is belong to agent user
+   */
+  else {
     /**
-     * if current script is a question
-     * then set current user answer
+     * If current script is a question
+     * then set current user answer is the message
      */
     if (isQuestionScript(currentScript.value)) {
-      currentUserAnswer.value = data;
-      currentScript.value.answer = { ...data };
+      currentUserAnswer.value = message;
+      currentScript.value.answer = { ...message };
 
       $emit("answered", currentScript.value);
-    } else {
+    }
+
+    /**
+     * Else
+     * That mean current script is not a question
+     * So we will reset current user answer
+     */
+    else {
       currentUserAnswer.value = messageFactory();
     }
   }
