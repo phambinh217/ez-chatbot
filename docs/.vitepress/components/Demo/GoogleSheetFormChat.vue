@@ -15,12 +15,6 @@ const sheets = {
   booking: {
     // https://docs.google.com/spreadsheets/d/1Xb4U-rwsOaqVWrhZdodzadDk4_tafdxlBBpNObRUlX4/edit?gid=0#gid=0
     url: "https://script.google.com/macros/s/AKfycbx8MnFUdN9XGwVDvFr18kP03eeSVoebG10bSWlFjoxlYPHIYh-cgnjBZBr_O8ffn8Np/exec",
-    metadata: [
-      {
-        name: "product_id",
-        value: 1,
-      },
-    ]
   },
 };
 

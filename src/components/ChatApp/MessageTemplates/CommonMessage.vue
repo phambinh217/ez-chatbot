@@ -1,8 +1,6 @@
 <template>
   <div class="--fc-message-content-inner">
-    <div class="--fc-message-text">
-      {{ message.content?.label || message.content }}
-    </div>
+    <div class="--fc-message-text" v-html="nl2br(message.content?.label || message.content)" />
     <div v-if="message.options" class="--fc-message-option-list">
       <div
         v-for="(option, index) in message.options"
@@ -17,6 +15,8 @@
 </template>
 
 <script setup>
+import { nl2br } from "@/helpers/string";
+
 const props = defineProps({
   message: {
     type: Object,
