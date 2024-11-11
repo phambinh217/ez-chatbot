@@ -1,5 +1,9 @@
 <template>
-  <GoogleSheetFormChat :sheet="sheet" :sheets="sheets" :options="options" />
+  <GoogleSheetFormChat
+    :sheet="sheet"
+    :sheets="sheets"
+    :default-options="options"
+  />
 </template>
 
 <script setup>
@@ -16,7 +20,7 @@ const sheets = {
         name: "product_id",
         value: 1,
       },
-    ],
+    ]
   },
 };
 

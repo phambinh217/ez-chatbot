@@ -13,6 +13,7 @@
 import { ref, onMounted, computed } from "vue";
 import { sendRequest } from "@/helpers/googleSheet";
 import { isQuestionScript } from "@/helpers/script";
+import { mergeDeep } from "@/helpers/object";
 import ChatApp from "./ChatApp.vue";
 
 const props = defineProps({
@@ -24,7 +25,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  options: {
+  defaultOptions: {
     type: Object,
   },
 });
@@ -36,6 +37,7 @@ const activeSheet = computed(() => props.sheets[props.sheet]);
 const activeScripts = computed(() => rawScripts.value[props.sheet]);
 const activeMetadata = computed(() => props.sheets[props.sheet]?.metadata);
 const isReady = computed(() => !!activeScripts.value);
+const options = computed(() => mergeDeep(props.defaultOptions, activeSheet.value?.options));
 
 const fetchScriptsFromGoogleSheet = () => {
   for (const sheet in props.sheets) {
@@ -83,5 +85,6 @@ const saveAnswerToGoogleSheet = (id, script) => {
   return sendRequest(activeSheet.value.url, payload);
 };
 
-const handleAnswered = ({ sessionId, data: script }) => saveAnswerToGoogleSheet(sessionId, script);
+const handleAnswered = ({ sessionId, data: script }) =>
+  saveAnswerToGoogleSheet(sessionId, script);
 </script>
