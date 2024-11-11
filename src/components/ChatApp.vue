@@ -23,7 +23,6 @@
             ref="chatWindowRef"
             :options="_options"
             :scripts="_scripts"
-            @finished="handleFinished"
             @answered="handleAnswered"
             @click-close-button="chatWindowOpen = false"
             @after-reset="handleAfterResetConversation"
@@ -67,18 +66,12 @@ import "@/assets/chat.css";
 import { ref, watch, computed, onMounted, toRefs } from "vue";
 import { randomString } from "@/helpers/string";
 import { messageFactory } from "@/helpers/factory";
-import injectPlugins from "@/plugins";
 import ChatWindow from "./ChatApp/ChatWindow.vue";
 import ChatWelcomeMessage from "./ChatApp/ChatWelcomeMessage.vue";
 import ForumOutlineIcon from "@/assets/svgIcons/forum-outline.svg";
 
 const props = defineProps({
   scripts: {
-    type: Array,
-    default: () => [],
-  },
-
-  metadata: {
     type: Array,
     default: () => [],
   },
@@ -96,29 +89,21 @@ const props = defineProps({
 const {
   scripts: _scripts,
   options: _options,
-  metadata: _metadata,
 } = toRefs(props);
 
-const setScript = (value) => (_scripts.value = value);
-const setOptions = (value) => (_options.value = value);
-const setMetadata = (value) => (_metadata.value = value);
+const $emit = defineEmits(["finished", "answered"]);
 
 const chatWindowRef = ref(null);
 const chatWindowOpen = ref(false);
 const conversationWasStarted = ref(false);
 const sessionId = ref(randomString());
-const onFinishedCallback = ref([]);
-const onChangedSessionCallback = ref([]);
-const onAnsweredCallback = ref([]);
 
 const welcomeMessage = computed(() => {
-  let message = props.scripts[0]
+  let message = props.scripts[0];
 
   if (message) {
     message = messageFactory(message);
   }
-
-  console.log(message)
 
   return message;
 });
@@ -128,9 +113,11 @@ const welcomeMessage = computed(() => {
  */
 const showWelcomeMessage = computed(() => {
   return !!(
-    welcomeMessage.value && // Has welcome message
-    _options.value?.welcomeMessage && // Show welcome message in options
-    conversationWasStarted.value == false // Conversation was not started
+    (
+      welcomeMessage.value && // Has welcome message
+      _options.value?.welcomeMessage && // Show welcome message in options
+      conversationWasStarted.value == false
+    ) // Conversation was not started
   );
 });
 
@@ -138,28 +125,13 @@ const showBubble = computed(
   () => _options.value?.embedded?.type != "background"
 );
 
-const onFinished = (callback) => {
-  onFinishedCallback.value.push(callback);
-};
-
-const onChangedSession = (callback) => {
-  onChangedSessionCallback.value.push(callback);
-};
-
-const onAnswered = (callback) => {
-  onAnsweredCallback.value.push(callback);
-};
-
-const handleFinished = (data) => {
-  for (const callback of onFinishedCallback.value) {
-    callback(data);
-  }
-};
-
 const handleAnswered = (data) => {
-  for (const callback of onAnsweredCallback.value) {
-    callback(data);
-  }
+  const emitPayload = {
+    sessionId: sessionId.value,
+    data,
+  };
+
+  $emit("answered", emitPayload);
 };
 
 const toggleChatWindow = () => {
@@ -205,24 +177,8 @@ const handleSelectOptionInWelcomeMessage = (payload) => {
   conversationWasStarted.value = true;
 };
 
-// const handleClickOutSideChatApp = () => {
-//   if (!_options.value?.clickOutSideClose) {
-//     return;
-//   }
-
-//   if (!chatWindowOpen.value) {
-//     return;
-//   }
-
-//   hideChatWindow();
-// };
-
 const handleAfterResetConversation = () => {
   sessionId.value = randomString();
-
-  for (const callback of onChangedSessionCallback.value) {
-    callback(sessionId.value);
-  }
 };
 
 const initStyle = () => {
@@ -248,36 +204,12 @@ watch(_options, () => initStyle(), {
   immediate: true,
 });
 
-const loadPlugin = () => {
-  injectPlugins({
-    app: {
-      onFinished,
-      onAnswered,
-      onChangedSession,
-      initSessionId: sessionId.value,
-    },
-
-    metadata: _metadata.value,
-    options: _options.value,
-  });
-};
-onMounted(() => loadPlugin());
-
 onMounted(() =>
   console.log(
     "%c This website is using formchat.net to create chat boxes. Please visit https://formchat.net/ to get started.",
     "background: #222; color: #bada55"
   )
 );
-
-defineExpose({
-  showChatWindow,
-  hideChatWindow,
-  toggleChatWindow,
-  setScript,
-  setOptions,
-  setMetadata,
-});
 </script>
 
 <style scoped>

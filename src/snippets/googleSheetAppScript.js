@@ -1,3 +1,4 @@
+
 /**
  * --------------------------------
  * COMMANDS
@@ -56,14 +57,15 @@ const UPDATE_OR_CREATE_COMMAND = ({ sheet, data, where }) => {
     }
   }
 
-  const rowData = arrCombine(headers, data);
-
   if (rowIndex !== -1) {
+    const existingRow = sheet.getRange(rowIndex, 1, 1, headers.length).getValues()[0];
+    const rowData = arrCombine(headers, data, existingRow);
     sheet.getRange(rowIndex, 1, 1, rowData.length).setValues([rowData]);
     return responseJson({
       message: "Row updated successfully",
     });
   } else {
+    const rowData = arrCombine(headers, data);
     sheet.appendRow(rowData);
     return responseJson({
       message: "Row created successfully",
@@ -76,6 +78,50 @@ commands.push({
   command: UPDATE_OR_CREATE_COMMAND,
   actionType: "update_or_create",
 });
+
+/**
+ * List rows
+ * @param {Sheet} sheet, the sheet you want to get
+ * @param {*} where, the where you want to get
+ */
+const LIST_ROWS_COMMAND = ({ sheet, where }) => {
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
+  const matchingRows = [];
+
+  for (let i = 0; i < rows.length; i++) {
+    let match = true;
+    for (let key in where) {
+      const colIndex = headers.indexOf(key);
+      if (colIndex === -1 || rows[i][colIndex] != where[key]) {
+        match = false;
+        break;
+      }
+    }
+
+    if (match) {
+      matchingRows.push(objectCombine(headers, rows[i]));
+    }
+  }
+
+  if (matchingRows.length > 0) {
+    return responseJson({
+      message: "Rows found",
+      data: matchingRows,
+    });
+  } else {
+    return responseJson({
+      message: "No matching rows found",
+    });
+  }
+};
+
+commands.push({
+  name: "LIST_ROWS_COMMAND",
+  command: LIST_ROWS_COMMAND,
+  actionType: "list",
+});
+
 
 /**
  * --------------------------------
@@ -107,17 +153,41 @@ const addNewColumnsIfNeeded = (sheet, headers, data) => {
  * The order of items in the array will be the same as headers
  * @param {Array} headers
  * @param {Object} data
+ * @param {Array} existingRow - The existing row data
  */
-const arrCombine = (headers, data) => {
+const arrCombine = (headers, data, existingRow = []) => {
   const formattedData = [];
 
   for (let i = 0; i < headers.length; i++) {
     const column = headers[i].toLowerCase();
-    formattedData.push(data[column]);
+    // Nếu data chứa giá trị cho cột hiện tại, sử dụng giá trị từ data
+    // Nếu không, giữ nguyên giá trị từ dòng hiện tại
+    formattedData.push(data[column] !== undefined ? data[column] : existingRow[i]);
   }
 
   return formattedData;
 };
+
+/**
+ * Create an object from headers and data
+ * key will take from headers
+ * value will take from data
+ *
+ * @param {Array} headers
+ * @param {Array} data
+ * @returns
+ */
+const objectCombine = (headers, data) => {
+  const formattedData = {};
+
+  for (let i = 0; i < headers.length; i++) {
+    const column = headers[i].toLowerCase();
+    formattedData[column] = data[i];
+  }
+
+  return formattedData;
+};
+
 
 /**
  * Send a JSON response

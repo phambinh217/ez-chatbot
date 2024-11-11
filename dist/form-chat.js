@@ -5338,7 +5338,7 @@ const Vs = (e = 16) => {
     if (t.content.includes("@") == !1) {
       const s = {
         type: "text",
-        position: "left",
+        userRole: "host",
         content: "Your email seem to be invalid",
         ...n.errorMessage
       };
@@ -5358,7 +5358,7 @@ const Vs = (e = 16) => {
     if (n.options.map((i) => i.value || i).includes(s) == !1) {
       const i = {
         type: "text",
-        position: "left",
+        userRole: "host",
         content: "Your answer seem to be invalid",
         ...n.errorMessage
       };

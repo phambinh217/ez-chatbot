@@ -10,13 +10,24 @@ export const messageFactory = (message) => ({
   ...message,
 });
 
-export const scriptFactory = (script) => ({
-  id: randomString(),
-  type: "text",
-  skippable: false,
-  skipText: "Skip",
-  longAnswer: false,
-  content: "",
-  answer: messageFactory(),
-  ...script,
-});
+export const scriptFactory = (script) => {
+  if (script?.options) {
+    /**
+     * If options is a string, convert it to an array
+     */
+    if (typeof script.options == "string") {
+      script.options = script.options.split(",").map((option) => option.trim());
+    }
+  }
+
+  return {
+    id: randomString(),
+    type: "text",
+    skippable: false,
+    skipText: "Skip",
+    longAnswer: false,
+    content: "",
+    answer: messageFactory(),
+    ...script,
+  };
+};

@@ -28,8 +28,9 @@ features:
     details: Only 106 KB js, and 17 KB css before gzip
 ---
 
-<ChatApp />
+<GoogleSheetFormChat />
 
 <script setup>
-import ChatApp from '.vitepress/components/Demo/ChatApp.vue'
+// import ChatApp from '.vitepress/components/Demo/ChatApp.vue'
+import GoogleSheetFormChat from '.vitepress/components/Demo/GoogleSheetFormChat.vue'
 </script>

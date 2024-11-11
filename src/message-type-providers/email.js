@@ -5,7 +5,7 @@ export default {
     if (answer.content.includes('@') == false) {
       const errorMessage = {
         type: 'text',
-        position: 'left',
+        userRole: "host",
         content: 'Your email seem to be invalid',
         ...script.errorMessage,
       }

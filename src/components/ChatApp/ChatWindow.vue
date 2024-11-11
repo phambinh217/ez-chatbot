@@ -63,7 +63,6 @@ const props = defineProps({
 });
 
 const $emit = defineEmits([
-  "finished",
   "click-close-button",
   "after-reset",
   "answered",
@@ -143,7 +142,7 @@ const addConversationMessage = (message) => {
      * then set current user answer is the message
      */
     if (isQuestionScript(currentScript.value)) {
-      currentUserAnswer.value = message;
+      currentUserAnswer.value = { ...message };
       currentScript.value.answer = { ...message };
 
       $emit("answered", currentScript.value);
@@ -274,20 +273,6 @@ const runNextScriptIfHas = async (requiredAnswer = true) => {
    */
   if (nextScriptId) {
     runScriptWithDelay(nextScriptId);
-    return;
-  }
-
-  if (!nextScriptId && isQuestionScript(currentScript.value) == false) {
-    $emit("finished", context.value);
-    return;
-  }
-
-  if (
-    !nextScriptId &&
-    isQuestionScript(currentScript.value) &&
-    currentUserAnswer.value
-  ) {
-    $emit("finished", context.value);
     return;
   }
 };
