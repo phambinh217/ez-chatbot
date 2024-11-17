@@ -64,6 +64,7 @@ const handleSelectOptionInMessage = (option, index) => {
 }
 
 .--fc-message-option-item {
-  @apply --fc-py-1 --fc-px-3 --fc-rounded-full --fc-bg-white --fc-text-gray-600 --fc-text-sm --fc-cursor-pointer hover:--fc-bg-gray-200 --fc-transition-all --fc-duration-300;
+  @apply --fc-bg-[var(--fc-secondary-color)] --fc-text-[var(--fc-secondary-contrast-color)];
+  @apply --fc-py-1 --fc-px-3 --fc-rounded-full --fc-text-sm --fc-cursor-pointer --fc-transition-all --fc-duration-300;
 }
 </style>

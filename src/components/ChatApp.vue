@@ -189,19 +189,24 @@ const initStyle = () => {
   const rootEl = document.querySelector(":root");
 
   const primaryColor = _options.value?.styles?.primaryColor;
-  const primaryLightColor = _options.value?.styles?.primaryLightColor;
   const primaryContrastColor = _options.value?.styles?.primaryContrastColor;
+  const secondaryColor = _options.value?.styles?.secondaryColor;
+  const secondaryContrastColor = _options.value?.styles?.secondaryContrastColor;
 
   if (primaryColor) {
     rootEl?.style.setProperty("--fc-primary-color", primaryColor);
   }
 
-  if (primaryLightColor) {
-    rootEl?.style.setProperty("--fc-primary-light-color", primaryLightColor);
-  }
-
   if (primaryContrastColor) {
     rootEl?.style.setProperty("--fc-primary-contrast-color", primaryContrastColor);
+  }
+
+  if (secondaryColor) {
+    rootEl?.style.setProperty("--fc-secondary-color", secondaryColor);
+  }
+
+  if (secondaryContrastColor) {
+    rootEl?.style.setProperty("--fc-secondary-contrast-color", secondaryContrastColor);
   }
 };
 

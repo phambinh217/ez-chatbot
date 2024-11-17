@@ -24,7 +24,6 @@
 
 :root {
     --fc-primary-color: #8774e1;
-    --fc-primary-light-color: #8774e1;
     --fc-primary-contrast-color: #fff;
 
     --fc-secondary-color: #212121;
@@ -58,11 +57,6 @@
  */
 .--fc-application.--fc-dark-theme .--fc-window {
     @apply !--fc-bg-gray-700;
-}
-
-.--fc-application.--fc-dark-theme .--fc-message-option-item {
-    @apply --fc-bg-gray-700 --fc-text-white;
-    @apply hover:--fc-bg-gray-900;
 }
 
 .--fc-application.--fc-dark-theme .--fc-composer-input {

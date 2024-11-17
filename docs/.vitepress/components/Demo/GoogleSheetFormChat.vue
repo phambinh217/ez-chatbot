@@ -33,12 +33,11 @@ const options = {
   welcomeMessage: true,
 
   styles: {
-    theme: "dark",
-
     primaryColor: "#8774e1",
-    primaryLightColor: "#8774e1",
-
     primaryContrastColor: "#ffffff",
+
+    secondaryColor: "#212121",
+    secondaryContrastColor: "#ffffff",
 
     chatWindow: {
       backgroundImage:
