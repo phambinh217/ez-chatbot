@@ -95,6 +95,6 @@ watch(
 }
 
 .--fc-composer-submit-button .--fc-icon {
-  @apply --fc-w-5 --fc-h-5 --fc-fill-white;
+  @apply --fc-w-5 --fc-h-5 --fc-fill-[var(--fc-primary-contrast-color)];
 }
 </style>

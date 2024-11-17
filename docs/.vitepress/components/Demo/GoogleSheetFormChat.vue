@@ -34,12 +34,15 @@ const options = {
 
   styles: {
     theme: "dark",
-    primaryColor: "#06b6d4",
-    primaryLightColor: "#a5f3fc",
+
+    primaryColor: "#8774e1",
+    primaryLightColor: "#8774e1",
+
+    primaryContrastColor: "#ffffff",
 
     chatWindow: {
       backgroundImage:
-        "url(https://wallpapers.com/images/hd/whatsapp-chat-background-fb34cc4b2hg9lmix.jpg)",
+        "url(https://web.telegram.org/k/assets/img/pattern.svg)",
       backgroundSize: "contain",
     },
   },

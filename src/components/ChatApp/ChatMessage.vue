@@ -3,28 +3,33 @@
     :class="{
       '--fc-message-agent-user': _message.userRole == 'agent',
       '--fc-message-host-user': _message.userRole == 'host',
-      '--fc-message-shadow': shadow,
     }"
   >
     <div class="--fc-message-container">
       <div v-if="_message.userRole == 'host'" class="--fc-message-user">
-        <div class="--fc-message-avatar">
+        <div
+          class="--fc-message-avatar"
+          :class="{
+            '--fc-message-shadow': shadow,
+          }"
+        >
           <img
             v-if="options?.hostUser?.avatarUrl"
             :src="options?.hostUser?.avatarUrl"
           />
         </div>
       </div>
-      <div class="--fc-message-content-container">
-        <template v-if="_message.component">
-          <component
-            :is="_message.component"
-            :message="_message"
-            :options="options"
-            @select-option="handleSelectOptionInMessage"
-          />
-        </template>
-      </div>
+      <template v-if="_message.component">
+        <component
+          :is="_message.component"
+          :message="_message"
+          :options="options"
+          :class="{
+            '--fc-message-shadow': shadow,
+          }"
+          @select-option="handleSelectOptionInMessage"
+        />
+      </template>
     </div>
   </div>
 </template>
@@ -80,24 +85,14 @@ const handleSelectOptionInMessage = (payload) => {
 }
 
 .--fc-message-user .--fc-message-avatar {
-  @apply --fc-w-[30px] --fc-h-[30px] --fc-rounded-full --fc-bg-gray-200 --fc-overflow-hidden;
+  @apply --fc-w-[30px] --fc-h-[30px] --fc-rounded-full --fc-bg-gray-200;
 }
 
 .--fc-message-user .--fc-message-avatar img {
-  @apply --fc-w-full;
+  @apply --fc-w-full --fc-rounded-full;
 }
 
-.--fc-message-content-container {
-  @apply --fc-px-3 --fc-py-2 --fc-rounded-2xl --fc-gap-3 --fc-inline-block;
-  @apply --fc-bg-[var(--fc-primary-light-color)];
-}
-
-.--fc-message-agent-user .--fc-message-content-container {
-  @apply --fc-bg-gray-200;
-}
-
-.--fc-message-shadow .--fc-message-avatar,
-.--fc-message-shadow .--fc-message-content-container {
+.--fc-message-shadow {
   @apply --fc-shadow-2xl;
 }
 </style>

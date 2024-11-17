@@ -38,7 +38,8 @@ const $emit = defineEmits(["click-reset-button", 'click-close-button']);
 
 <style scoped>
 .--fc-header-container {
-  @apply --fc-bg-[var(--fc-primary-color)] --fc-px-4 --fc-py-2 --fc-text-white --fc-flex --fc-items-center --fc-justify-between;
+  @apply --fc-bg-[var(--fc-primary-color)] --fc-text-[var(--fc-primary-contrast-color)];
+  @apply --fc-px-4 --fc-py-2  --fc-flex --fc-items-center --fc-justify-between;
 }
 
 .--fc-header-user {

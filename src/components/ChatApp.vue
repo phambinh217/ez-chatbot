@@ -190,6 +190,7 @@ const initStyle = () => {
 
   const primaryColor = _options.value?.styles?.primaryColor;
   const primaryLightColor = _options.value?.styles?.primaryLightColor;
+  const primaryContrastColor = _options.value?.styles?.primaryContrastColor;
 
   if (primaryColor) {
     rootEl?.style.setProperty("--fc-primary-color", primaryColor);
@@ -197,6 +198,10 @@ const initStyle = () => {
 
   if (primaryLightColor) {
     rootEl?.style.setProperty("--fc-primary-light-color", primaryLightColor);
+  }
+
+  if (primaryContrastColor) {
+    rootEl?.style.setProperty("--fc-primary-contrast-color", primaryContrastColor);
   }
 };
 
@@ -228,6 +233,6 @@ onMounted(() =>
 }
 
 .--fc-bubble-icon {
-  @apply --fc-w-[40px] --fc-fill-white;
+  @apply --fc-w-[40px] --fc-fill-[var(--fc-primary-contrast-color)];
 }
 </style>
