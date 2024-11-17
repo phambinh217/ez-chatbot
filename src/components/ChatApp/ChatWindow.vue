@@ -7,10 +7,10 @@
     />
     <div class="--fc-body">
       <ChatConversation ref="chatConversationRef" :options="options">
-        <ChatMessage
-          v-for="(message, index) in conversationMessages"
+        <ChatMessageGroup
+          v-for="(messages, index) in groupedConversationMessages"
           :key="index"
-          :message="message"
+          :messages="messages"
           :options="options"
           @select-option="handleSelectOptionInMessage"
         />
@@ -41,7 +41,7 @@ import { isQuestionScript } from "@/helpers/script";
 import { messageFactory, scriptFactory } from "@/helpers/factory";
 import ChatComposer from "./ChatComposer.vue";
 import ChatConversation from "./ChatConversation.vue";
-import ChatMessage from "./ChatMessage.vue";
+import ChatMessageGroup from "./ChatMessageGroup.vue";
 import ChatHeader from "./ChatHeader.vue";
 import ChatResetConfirmModal from "./ChatResetConfirmModal.vue";
 import messageTypeProviders from "@/message-type-providers";
@@ -86,6 +86,32 @@ const context = computed(() => {
 });
 
 const conversationMessages = ref([]);
+
+const groupedConversationMessages = computed(() => {
+  const groups = [];
+  let groupUser = null;
+  let groupIndex = 0;
+
+  for (const message of conversationMessages.value) {
+    if (!groupUser) {
+      groupUser = message.userRole;
+    }
+
+    if (groupUser != message.userRole) {
+      groupIndex++;
+      groupUser = message.userRole;
+    }
+
+    if (!groups[groupIndex]) {
+      groups[groupIndex] = [];
+    }
+
+    groups[groupIndex].push(message);
+  }
+
+  return groups;
+});
+
 const userChatMessage = ref("");
 const currentScript = ref(scriptFactory());
 const latestUserMessage = ref(messageFactory());
@@ -127,11 +153,10 @@ const addConversationMessage = (message) => {
   if (message.userRole == "host") {
     currentUserAnswer.value = messageFactory();
   } else {
-
-  /**
-   * Else
-   * That mean this message is belong to agent user
-   */
+    /**
+     * Else
+     * That mean this message is belong to agent user
+     */
     /**
      * If current script is a question
      * then set current user answer is the message
@@ -142,12 +167,11 @@ const addConversationMessage = (message) => {
 
       $emit("answered", currentScript.value);
     } else {
-
-    /**
-     * Else
-     * That mean current script is not a question
-     * So we will reset current user answer
-     */
+      /**
+       * Else
+       * That mean current script is not a question
+       * So we will reset current user answer
+       */
       currentUserAnswer.value = messageFactory();
     }
   }

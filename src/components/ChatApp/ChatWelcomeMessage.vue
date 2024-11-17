@@ -1,7 +1,7 @@
 <template>
   <div class="--fc-welcome-message-container">
-    <ChatMessage
-      :message="message"
+    <ChatMessageGroup
+      :messages="[message]"
       :options="options"
       shadow
       @select-option="handleSelectOptionInMessage"
@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import ChatMessage from './ChatMessage.vue';
+import ChatMessageGroup from './ChatMessageGroup.vue';
 
 defineProps({
   message: {
