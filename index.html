@@ -13,7 +13,15 @@
   <script src="dist/form-chat.umd.cjs"></script>
   <!-- <script type="module" src="src/main.js"></script> -->
   <script>
-    const demo = window.createFormChat('#demo')
+    const demo = window.createFormChat('#demo', {
+      sheet: "booking",
+
+      sheets: {
+        booking: {
+          url: "https://script.google.com/macros/s/AKfycbx8MnFUdN9XGwVDvFr18kP03eeSVoebG10bSWlFjoxlYPHIYh-cgnjBZBr_O8ffn8Np/exec",
+        },
+      }
+    })
   </script>
 </body>
 

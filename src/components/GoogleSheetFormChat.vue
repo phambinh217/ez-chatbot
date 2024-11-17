@@ -19,11 +19,11 @@ import ChatApp from "./ChatApp.vue";
 const props = defineProps({
   sheets: {
     type: Object,
-    required: true,
+    default: () => ({}),
   },
   sheet: {
     type: String,
-    required: true,
+    default: "default",
   },
   defaultOptions: {
     type: Object,
@@ -36,14 +36,33 @@ const chatAppRef = ref();
 const activeSheet = computed(() => props.sheets[props.sheet]);
 const activeScripts = computed(() => rawScripts.value[props.sheet]);
 const activeMetadata = computed(() => props.sheets[props.sheet]?.metadata);
-const isReady = computed(() => !!activeScripts.value);
+
+const isReady = computed(() => {
+  const numberOfSheets = Object.keys(props.sheets).length;
+
+  /**
+   * If no sheet is defined, return true
+   * Because the form chat can be used without a sheet
+   */
+  if (numberOfSheets === 0) {
+    return true;
+  }
+
+  return !!activeScripts.value
+});
+
 const options = computed(() => mergeDeep(props.defaultOptions, activeSheet.value?.options));
 
 const fetchScriptsFromGoogleSheet = () => {
   for (const sheet in props.sheets) {
     const sheetConfig = props.sheets[sheet];
 
-    sendRequest(sheetConfig.url, {
+    if (!sheetConfig?.url) {
+      console.error(`Sheet ${sheet} has no url config`);
+      continue;
+    }
+
+    sendRequest(sheetConfig?.url, {
       sheetTitle: sheetConfig?.scriptSheet || "scripts",
       command: "LIST_ROWS_COMMAND",
     }).then(({ data }) => {

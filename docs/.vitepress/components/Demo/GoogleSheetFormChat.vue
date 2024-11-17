@@ -41,7 +41,7 @@ const options = {
 
     chatWindow: {
       backgroundImage:
-        "url(https://web.telegram.org/k/assets/img/pattern.svg)",
+        "url(/images/pattern.svg)",
       backgroundSize: "contain",
     },
   },
