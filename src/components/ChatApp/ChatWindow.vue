@@ -62,11 +62,7 @@ const props = defineProps({
   },
 });
 
-const $emit = defineEmits([
-  "click-close-button",
-  "after-reset",
-  "answered",
-]);
+const $emit = defineEmits(["click-close-button", "after-reset", "answered"]);
 
 const chatWindowStyles = computed(() => {
   return props.options?.styles?.chatWindow;
@@ -130,13 +126,12 @@ const addConversationMessage = (message) => {
    */
   if (message.userRole == "host") {
     currentUserAnswer.value = messageFactory();
-  }
+  } else {
 
   /**
    * Else
    * That mean this message is belong to agent user
    */
-  else {
     /**
      * If current script is a question
      * then set current user answer is the message
@@ -146,14 +141,13 @@ const addConversationMessage = (message) => {
       currentScript.value.answer = { ...message };
 
       $emit("answered", currentScript.value);
-    }
+    } else {
 
     /**
      * Else
      * That mean current script is not a question
      * So we will reset current user answer
      */
-    else {
       currentUserAnswer.value = messageFactory();
     }
   }
@@ -185,7 +179,8 @@ const runScript = (scriptId) => {
   runNextScriptIfHas();
 };
 
-const runScriptWithDelay = (scriptId) => setTimeout(() => runScript(scriptId), 300);
+const runScriptWithDelay = (scriptId) =>
+  setTimeout(() => runScript(scriptId), 300);
 
 const startConversationWithDelay = () => runScriptWithDelay(null);
 
@@ -317,11 +312,9 @@ const handleSelectOptionInMessage = async (payload) => {
   await runNextScriptIfHas();
 };
 
-
 const handleClickSkipButton = async () => {
   await runNextScriptIfHas(false);
 };
-
 
 const handleClickResetButton = () => {
   chatResetConfirmModal.value.open = true;
@@ -337,7 +330,7 @@ const resetConversation = () => {
   currentScript.value = scriptFactory();
   latestUserMessage.value = messageFactory();
   currentUserAnswer.value = messageFactory();
-}
+};
 
 const handleConfirmResetChat = () => {
   chatResetConfirmModal.value.open = false;
@@ -355,7 +348,6 @@ defineExpose({
   triggerSelectOptionInMessage: handleSelectOptionInMessage,
   triggerClickSkipButton: handleClickSkipButton,
 });
-
 </script>
 
 <style scoped>

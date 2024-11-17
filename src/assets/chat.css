@@ -49,21 +49,3 @@
     @apply --fc-cursor-pointer;
     @apply !--fc-shadow-none !--fc-outline-none;
 }
-
-/**
- * ------------------------------
- * Main css
- * ------------------------------
- */
-.--fc-application.--fc-dark-theme .--fc-window {
-    @apply !--fc-bg-gray-700;
-}
-
-.--fc-application.--fc-dark-theme .--fc-composer-input {
-    @apply --fc-bg-gray-700 --fc-text-white --fc-border-gray-600;
-    @apply placeholder:--fc-text-gray-300;
-}
-
-.--fc-application.--fc-dark-theme .--fc-composer-submit-button {
-    @apply --fc-text-gray-700;
-}

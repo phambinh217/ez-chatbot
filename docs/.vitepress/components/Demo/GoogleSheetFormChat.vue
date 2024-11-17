@@ -40,8 +40,7 @@ const options = {
     secondaryContrastColor: "#ffffff",
 
     chatWindow: {
-      backgroundImage:
-        "url(/images/pattern.svg)",
+      backgroundImage: "linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(15, 15, 35, 0.8)), url(/images/pattern.svg)",
       backgroundSize: "contain",
     },
   },

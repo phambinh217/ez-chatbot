@@ -85,7 +85,8 @@ watch(
 }
 
 .--fc-composer-input {
-  @apply --fc-py-2 --fc-rounded-[30px] --fc-bg-white --fc-border --fc-border-gray-300 --fc-border-solid --fc-w-full --fc-px-[20px] --fc-h-[40px] --fc-min-h-[40px] --fc-resize-none --fc-overflow-hidden;
+  @apply --fc-bg-[var(--fc-secondary-color)] --fc-text-[var(--fc-secondary-contrast-color)] placeholder:--fc-text-[var(--fc-secondary-contrast-color)];
+  @apply --fc-py-2 --fc-rounded-lg --fc-border-none --fc-w-full --fc-px-[20px] --fc-h-[40px] --fc-min-h-[40px] --fc-resize-none --fc-overflow-hidden;
   @apply focus:--fc-ring-0 focus:--fc-outline-none focus:--fc-border-[var(--fc-primary-color)];
 }
 

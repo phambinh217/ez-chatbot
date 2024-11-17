@@ -1,10 +1,6 @@
 <template>
   <div
     class="--fc-application --fc-formchat-dot-net"
-    :class="{
-      '--fc-dark-theme': _options?.styles?.theme === 'dark',
-      '--fc-light-theme': _options?.styles?.theme === 'light',
-    }"
   >
     <div class="--fc-application-inner">
       <Transition
